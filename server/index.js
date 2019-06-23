@@ -5,7 +5,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '../client/public')));
 
-const PORT = process.env.PORT || 2222;
+const PORT = process.env.PORT || 2228;
 
 
 app.listen(PORT, () => {
