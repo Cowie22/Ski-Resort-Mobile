@@ -1,15 +1,19 @@
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
+import MapView from 'react-native-maps';
 import axios from 'axios';
 import Ski from './src/components/Ski';
-import Trail from './src/components/Trail'
+import Trail from './src/components/Trail';
+import NorthStar from './images/xlarge.jpg';
 import { Tabs } from './src/router';
+import { Overlay } from 'react-native-elements';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       runInfo: [],
+      show: false,
     }
   }
   componentDidMount() {
@@ -18,18 +22,21 @@ class App extends React.Component {
   getRuns() {
     axios.get(`http://localhost:2228/run`)
       .then(res => {
-        console.log('res', res)
         this.setState({
           runInfo: res.data,
         });
       })
   }
   render() {
-    console.log('info', this.state.runInfo)
     return (
       <ScrollView>
         <Text style={styles.title}>N-Star</Text>
-        <Ski name="Cow" />
+        <MapView style={styles.container}>
+        <Image
+          source={NorthStar}
+          style={{ width: 374, height: 320 }}
+        />
+        </MapView>
         <Tabs />
       </ScrollView>
     );
