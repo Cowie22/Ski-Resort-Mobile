@@ -8,14 +8,10 @@ const { getAllRuns } = require('../database/index');
 
 const PORT = process.env.PORT || 2228;
 
-app.get('/run', (req, res) => {
-  getAllRuns((err, info) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).send(info);
-    }
-  });
+// gets all runs using async and await
+app.get('/run', async function(req, res) {
+  const data = await getAllRuns();
+  res.send(data[0]);
 });
 
 

@@ -1,19 +1,14 @@
-const mysql = require('mysql');
+const mysql = require('mysql2/promise');
 const config = require('./config.js');
 
-const connection = mysql.createConnection(config);
+const pool = mysql.createPool(config)
 
-const getAllRuns = (callback) => {
+// gets all runs from database using async and await
+async function getAllRuns() {
   const queryStr = 'SELECT * FROM runs';
-  connection.query(queryStr, (err, run) => {
-    if (err) {
-      callback(err);
-      return;
-    }
-    callback(null, run);
-  });
+  const result = await pool.query(queryStr);
+  return result;
 };
-
 
 
 module.exports = {
