@@ -7,6 +7,30 @@ import Trail from './src/components/Trail';
 import NorthStar from './images/xlarge.jpg';
 import { Tabs } from './src/router';
 import { Overlay } from 'react-native-elements';
+import ImageMapper from 'react-native-image-mapper';
+
+const MAPPING = [
+  {
+    id: '0',
+    name: 'First Area Name',
+    shape: 'rectangle',
+    width: 30,
+    height: 40,
+    x1: 80,
+    y1: 500,
+    prefill: 'blue',
+    fill: 'blue'
+  },
+  {
+    id: '1',
+    name: 'Second Area Name',
+    shape: 'rectangle',
+    x2: 155,
+    y2: 540,
+    x1: 125,
+    y1: 500
+  },
+]
 
 class App extends React.Component {
   constructor(props) {
@@ -31,12 +55,21 @@ class App extends React.Component {
     return (
       <ScrollView>
         <Text style={styles.title}>N-Star</Text>
-        <MapView style={styles.container}>
+        {/* <MapView style={styles.container}>
         <Image
           source={NorthStar}
           style={{ width: 374, height: 320 }}
         />
-        </MapView>
+        </MapView> */}
+        <ImageMapper
+          imgHeight={400}
+          imgWidth={380}
+          imgSource={NorthStar}
+          imgMap={MAPPING}
+          // onPress={(item, idx, event) => this.onAnyAreaPress(item, idx, event)}
+          containerStyle={styles.container}
+          // selectedAreaId="my_area_id"
+        />
         <Tabs />
       </ScrollView>
     );
