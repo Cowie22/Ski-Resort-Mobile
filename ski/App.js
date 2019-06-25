@@ -32,11 +32,13 @@ class App extends React.Component {
   }
   onAnyAreaPress(item, idx, event) {
     console.log('hello')
+    console.log('item', item)
+    console.log('idx', idx)
+    console.log('event', event)
   }
   render() {
     return (
       <ScrollView style={{backgroundColor: 'black', color: '#fff'}}>
-        {/* <Text style={styles.title}>N-Star</Text> */}
         <Image
           style={styles.nstar}
           source={{uri: 'https://easkiandsnowboard.com/assets/Uploads/_resampled/PadWyIzMDAiLCIyMDAiLCJGRkZGRkYiLDBd/LOGO-Northstar-USA.jpg'}}

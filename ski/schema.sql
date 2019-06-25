@@ -39,14 +39,16 @@ CREATE TABLE places (
 INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Lookout Express", 6130, 8120);
 INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Backside Express", 6800, 8610);
 INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Promised Land Express", 8000, 8420);
-INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Comstock Express", 7400, 8620);
-INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Rendezvous Express", 7700, 8550);
-INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Vista Express", 6950, 7700);
-INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Arrow Express", 6950, 7400);
-INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Tahoe Zephyr Express", 6950, 7620);
+INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Timberline", 6400, 6970);
+INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Highland Gondola", 6350, 6950);
 INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Big Springs Gondola Express", 6330, 6950);
-INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Village", 6330, 6950);
-INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Bear Paw", 6950, 7220);
+INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Village Express", 6330, 6950);
+INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Tahoe Zephyr Express", 6950, 7620);
+INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Arrow Express", 6950, 7400);
+INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Vista Express", 6950, 7700);
+INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Rendezvous Express", 7700, 8550);
+INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Comstock Express", 7400, 8620);
+INSERT into lifts (name, start_elevation, end_elevation) VALUES ("The Big Easy", 6950, 7220);
 
 -- Populates runs
 
