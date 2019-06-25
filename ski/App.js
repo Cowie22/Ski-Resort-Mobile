@@ -35,8 +35,12 @@ class App extends React.Component {
   }
   render() {
     return (
-      <ScrollView style={{backgroundColor: 'black'}}>
-        <Text style={styles.title}>N-Star</Text>
+      <ScrollView style={{backgroundColor: 'black', color: '#fff'}}>
+        {/* <Text style={styles.title}>N-Star</Text> */}
+        <Image
+          style={styles.nstar}
+          source={{uri: 'https://easkiandsnowboard.com/assets/Uploads/_resampled/PadWyIzMDAiLCIyMDAiLCJGRkZGRkYiLDBd/LOGO-Northstar-USA.jpg'}}
+        />
         <ImageMapper
           imgHeight={350}
           imgWidth={380}
@@ -64,8 +68,18 @@ const styles = StyleSheet.create({
     fontSize: 100,
     textAlign: 'center',
     margin: 10,
-    color: "#1E90FF"
+    color: "#1E90FF",
   },
+  nstar: {
+    width: '100%',
+    height: 170,
+    margin: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    position: 'absolute'
+  }
 });
 
 
