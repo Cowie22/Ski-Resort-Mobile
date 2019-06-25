@@ -12,23 +12,23 @@ import ImageMapper from 'react-native-image-mapper';
 const MAPPING = [
   {
     id: '0',
-    name: 'First Area Name',
-    shape: 'rectangle',
-    width: 30,
-    height: 40,
-    x1: 80,
-    y1: 500,
+    name: 'Lookout Express',
+    shape: 'circle',
+    radius: 22,
+    x1: 280,
+    y1: 290,
     prefill: 'blue',
     fill: 'blue'
   },
   {
     id: '1',
-    name: 'Second Area Name',
-    shape: 'rectangle',
-    x2: 155,
-    y2: 540,
-    x1: 125,
-    y1: 500
+    name: 'Promise Land Express',
+    shape: 'circle',
+    radius: 22,
+    x1: 260,
+    y1: 140,
+    prefill: 'blue',
+    fill: 'blue'
   },
 ]
 
@@ -39,6 +39,7 @@ class App extends React.Component {
       runInfo: [],
       show: false,
     }
+    this.onAnyAreaPress = this.onAnyAreaPress.bind(this);
   }
   componentDidMount() {
     this.getRuns();
@@ -51,9 +52,12 @@ class App extends React.Component {
         });
       })
   }
+  onAnyAreaPress(item, idx, event) {
+    console.log('hello')
+  }
   render() {
     return (
-      <ScrollView>
+      <ScrollView style={{backgroundColor: 'black'}}>
         <Text style={styles.title}>N-Star</Text>
         {/* <MapView style={styles.container}>
         <Image
@@ -66,7 +70,7 @@ class App extends React.Component {
           imgWidth={380}
           imgSource={NorthStar}
           imgMap={MAPPING}
-          // onPress={(item, idx, event) => this.onAnyAreaPress(item, idx, event)}
+          onPress={(item, idx, event) => this.onAnyAreaPress(item, idx, event)}
           containerStyle={styles.container}
           // selectedAreaId="my_area_id"
         />
