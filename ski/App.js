@@ -8,29 +8,7 @@ import NorthStar from './images/xlarge.jpg';
 import { Tabs } from './src/router';
 import { Overlay } from 'react-native-elements';
 import ImageMapper from 'react-native-image-mapper';
-
-const MAPPING = [
-  {
-    id: '0',
-    name: 'Lookout Express',
-    shape: 'circle',
-    radius: 22,
-    x1: 280,
-    y1: 290,
-    prefill: 'blue',
-    fill: 'blue'
-  },
-  {
-    id: '1',
-    name: 'Promise Land Express',
-    shape: 'circle',
-    radius: 22,
-    x1: 260,
-    y1: 140,
-    prefill: 'blue',
-    fill: 'blue'
-  },
-]
+import MAPPING from './src/components/ChairMarker';
 
 class App extends React.Component {
   constructor(props) {
@@ -59,21 +37,16 @@ class App extends React.Component {
     return (
       <ScrollView style={{backgroundColor: 'black'}}>
         <Text style={styles.title}>N-Star</Text>
-        {/* <MapView style={styles.container}>
-        <Image
-          source={NorthStar}
-          style={{ width: 374, height: 320 }}
-        />
-        </MapView> */}
         <ImageMapper
-          imgHeight={400}
+          imgHeight={350}
           imgWidth={380}
           imgSource={NorthStar}
+          // Points come from ChairMarker.js in order to reduce code in App.js
           imgMap={MAPPING}
           onPress={(item, idx, event) => this.onAnyAreaPress(item, idx, event)}
           containerStyle={styles.container}
-          // selectedAreaId="my_area_id"
-        />
+        >
+        </ImageMapper>
         <Tabs />
       </ScrollView>
     );
