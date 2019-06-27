@@ -1,14 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
-import MapView from 'react-native-maps';
+import { StyleSheet, Text, View, ScrollView, Image, ImageBackground } from 'react-native';
 import axios from 'axios';
-import Ski from './src/components/Ski';
-import Trail from './src/components/Trail';
 import NorthStar from './images/xlarge.jpg';
 import { Tabs } from './src/router';
-import { Overlay } from 'react-native-elements';
-import ImageMapper from 'react-native-image-mapper';
-import MAPPING from './src/components/ChairMarker';
+import Lookout from './src/components/Lookout';
+import LiftIcon from './src/components/LiftIcon';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,8 +12,10 @@ class App extends React.Component {
     this.state = {
       runInfo: [],
       show: false,
+      mountainView: 0,
     }
-    this.onAnyAreaPress = this.onAnyAreaPress.bind(this);
+    this.handleIconPress = this.handleIconPress.bind(this);
+    this.handleHomeButton = this.handleHomeButton.bind(this);
   }
   componentDidMount() {
     this.getRuns();
@@ -30,31 +28,40 @@ class App extends React.Component {
         });
       })
   }
-  onAnyAreaPress(item, idx, event) {
-    console.log('hello')
-    console.log('item', item)
-    console.log('idx', idx)
-    console.log('event', event)
+  handleIconPress(event) {
+    console.log(event)
+    this.setState({
+      mountainView: event,
+    }, () => console.log(this.state.mountainView))
+  }
+  handleHomeButton(event) {
+    this.setState({
+      mountainView: event,
+    })
   }
   render() {
+    const { mountainView } = this.state;
     return (
+      mountainView === 0 ?
       <ScrollView style={{backgroundColor: 'black', color: '#fff'}}>
         <Image
           style={styles.nstar}
           source={{uri: 'https://easkiandsnowboard.com/assets/Uploads/_resampled/PadWyIzMDAiLCIyMDAiLCJGRkZGRkYiLDBd/LOGO-Northstar-USA.jpg'}}
         />
-        <ImageMapper
-          imgHeight={350}
-          imgWidth={380}
-          imgSource={NorthStar}
-          // Points come from ChairMarker.js in order to reduce code in App.js
-          imgMap={MAPPING}
-          onPress={(item, idx, event) => this.onAnyAreaPress(item, idx, event)}
-          containerStyle={styles.container}
+        <ImageBackground
+          style={styles.img}
+          source={NorthStar}
         >
-        </ImageMapper>
+        <LiftIcon
+          handleIconPress={this.handleIconPress}
+        />
+        </ImageBackground>
         <Tabs />
       </ScrollView>
+      :
+      <Lookout
+        handleHomeButton={this.handleHomeButton}
+      />
     );
   }
 }
@@ -64,7 +71,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
   },
   title: {
     fontSize: 100,
@@ -81,7 +88,14 @@ const styles = StyleSheet.create({
   },
   image: {
     position: 'absolute'
-  }
+  },
+  img: {
+    width: 380,
+    height: 350,
+    margin: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 
