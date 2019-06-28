@@ -47,6 +47,46 @@ class LiftIcon extends React.Component {
           type="clear"
           TouchableOpacity={0.2}
         />
+        <Button
+          icon={snowIcon}
+          style={{top: 68, left: -64}}
+          buttonStyle={styles.btn}
+          onPress={() => handleIcons(4)}
+          type="clear"
+          TouchableOpacity={0.2}
+        />
+        <Button
+          icon={snowIcon}
+          style={{top: 102, left: -134}}
+          buttonStyle={styles.btn}
+          onPress={() => handleIcons(5)}
+          type="clear"
+          TouchableOpacity={0.2}
+        />
+        <Button
+          icon={snowIcon}
+          style={{top: 52, left: -144}}
+          buttonStyle={styles.btn}
+          onPress={() => handleIcons(6)}
+          type="clear"
+          TouchableOpacity={0.2}
+        />
+        <Button
+          icon={snowIcon}
+          style={{top: 72, left: -193}}
+          buttonStyle={styles.btn}
+          onPress={() => handleIcons(7)}
+          type="clear"
+          TouchableOpacity={0.2}
+        />
+        <Button
+          icon={snowIcon}
+          style={{top: 10, left: -74}}
+          buttonStyle={styles.btn}
+          onPress={() => handleIcons(8)}
+          type="clear"
+          TouchableOpacity={0.2}
+        />
       </View>
     )
 

@@ -40,7 +40,7 @@ INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Lookout Expres
 INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Backside Express", 6800, 8610);
 INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Promised Land Express", 8000, 8420);
 INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Timberline", 6400, 6970);
-INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Highland Gondola", 6350, 6950);
+INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Highlands Gondola", 6350, 6950);
 INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Big Springs Gondola Express", 6330, 6950);
 INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Village Express", 6330, 6950);
 INSERT into lifts (name, start_elevation, end_elevation) VALUES ("Tahoe Zephyr Express", 6950, 7620);
