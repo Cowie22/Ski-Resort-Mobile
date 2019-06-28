@@ -5,6 +5,10 @@ import NorthStar from './images/xlarge.jpg';
 import { Tabs } from './src/router';
 import Lookout from './src/components/Lookout';
 import LiftIcon from './src/components/LiftIcon';
+import Backside from './src/components/Backside';
+import Gondola from './src/components/Gondola';
+import MidMountain from './src/components/MidMountain';
+import Summit from './src/components/Summit';
 
 class App extends React.Component {
   constructor(props) {
@@ -31,11 +35,7 @@ class App extends React.Component {
   handleIcons(event) {
     this.setState({
       mountainView: event,
-    }, () => {
-      if (this.state.mountainView === 0) {
-        this.handleAnimation();
-      }
-    })
+    }, () => console.log(this.state.mountainView))
   }
   handleAnimation() {
     Animated.timing(                  // Animate over time
@@ -66,8 +66,27 @@ class App extends React.Component {
         </ImageBackground>
         <Tabs />
       </Animated.ScrollView>
-      :
+      : mountainView === 1 ?
       <Lookout
+        handleIcons={this.handleIcons}
+        mountainView={this.state.mountainView}
+      />
+      : mountainView === 2 || mountainView === 3 ?
+      <Backside
+        handleIcons={this.handleIcons}
+        mountainView={this.state.mountainView}
+      />
+      : mountainView === 4 || mountainView === 5 || mountainView === 6 || mountainView === 7 ?
+      <Gondola
+        handleIcons={this.handleIcons}
+        mountainView={this.state.mountainView}
+      />
+      : mountainView === 8 || mountainView === 9 || mountainView === 10 || mountainView === 13 ?
+      <MidMountain
+        handleIcons={this.handleIcons}
+        mountainView={this.state.mountainView}
+      /> :
+      <Summit
         handleIcons={this.handleIcons}
         mountainView={this.state.mountainView}
       />

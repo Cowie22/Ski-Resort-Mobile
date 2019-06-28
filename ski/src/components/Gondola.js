@@ -2,9 +2,9 @@ import React from 'react';
 import {StyleSheet, Text, View, Image, ScrollView, Animated } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import LookoutImg from '../../images/Lookout.jpg';
+import GondolaImg from '../../images/Gondola.jpg';
 
-class Lookout extends React.Component {
+class Gondola extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +22,8 @@ class Lookout extends React.Component {
   }
   render() {
     const { mountainView, handleIcons } = this.props;
-    mountainView === 1 ? this.handleAnimation() : null;
+    mountainView === 4 || mountainView === 5 ||
+    mountainView === 6 || mountainView === 7 ? this.handleAnimation() : null;
     return (
       <Animated.ScrollView minimumZoomScale={1} maximumZoomScale={5}
       style={{backgroundColor: 'black', color: '#fff', opacity: this.state.fadeAnim}}>
@@ -32,7 +33,7 @@ class Lookout extends React.Component {
         />
         <Image
           style={styles.img}
-          source={LookoutImg}
+          source={GondolaImg}
         />
         <Button
           icon={
@@ -79,4 +80,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Lookout
+export default Gondola
