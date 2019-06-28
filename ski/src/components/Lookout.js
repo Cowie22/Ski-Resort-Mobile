@@ -21,7 +21,7 @@ class Lookout extends React.Component {
     ).start();
   }
   render() {
-    this.props.mountainView === 1 ? this.handleAnimation() : null
+    this.props.mountainView === 1 ? this.handleAnimation() : null;
     return (
       <Animated.ScrollView minimumZoomScale={1} maximumZoomScale={5}
       style={{backgroundColor: 'black', color: '#fff', opacity: this.state.fadeAnim}}>

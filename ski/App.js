@@ -31,7 +31,11 @@ class App extends React.Component {
   handleIcons(event) {
     this.setState({
       mountainView: event,
-    }, () => console.log(this.state.mountainView))
+    }, () => {
+      if (this.state.mountainView === 0) {
+        this.handleAnimation();
+      }
+    })
   }
   handleAnimation() {
     Animated.timing(                  // Animate over time
@@ -44,7 +48,7 @@ class App extends React.Component {
   }
   render() {
     const { mountainView } = this.state;
-    mountainView === 0 ? this.handleAnimation() : null
+    mountainView === 0 ? this.handleAnimation() : null;
     return (
       mountainView === 0 ?
       <Animated.ScrollView style={{backgroundColor: 'black', color: '#fff', opacity: this.state.fadeAnim}}>
