@@ -11,38 +11,56 @@ class LiftIcon extends React.Component {
     }
   }
   render() {
+    // Icon shared amongst all of the chairlifts, seen in all button icons below
+    const snowIcon =
+      <Icon
+        name="snowflake-o"
+        size={22}
+        color="#2D68C4"
+      />;
+      // Destructuring so I don't have to write this.props,
+      // handleIcons controls which part of the mountain is displayed
+      const{ handleIcons } = this.props;
     return (
       <View>
         <Button
-          icon={
-            <Icon
-              name="snowflake-o"
-              size={22}
-              color="#2D68C4"
-            />
-          }
-          buttonStyle={{position: "absolute", top: 40, left: 74, backgroundColor: 'rgba(255, 255, 255, 0.6)', borderRadius: 50 }}
-          onPress={() => this.props.handleIcons(1)}
+          icon={snowIcon}
+          style={{top: 34, left: 74}}
+          buttonStyle={styles.btn}
+          onPress={() => handleIcons(1)}
           type="clear"
           TouchableOpacity={0.2}
         />
-        {/* <Button
-          icon={
-            <Icon
-              name="snowflake-o"
-              size={22}
-              color="#2D68C4"
-            />
-          }
-          buttonStyle={{position: "absolute", top: 70, left: 74, backgroundColor: 'rgba(255, 255, 255, 0.6)', borderRadius: 50 }}
-          onPress={() => props.handleIconPress(1)}
+        <Button
+          icon={snowIcon}
+          style={{top: -52, left: 52}}
+          buttonStyle={styles.btn}
+          onPress={() => handleIcons(2)}
           type="clear"
           TouchableOpacity={0.2}
-        /> */}
+        />
+        <Button
+          icon={snowIcon}
+          style={{top: -120, left: 80}}
+          buttonStyle={styles.btn}
+          onPress={() => handleIcons(3)}
+          type="clear"
+          TouchableOpacity={0.2}
+        />
       </View>
     )
 
   }
 }
+
+const styles = StyleSheet.create({
+  // Shared Style amongst all buttons, unique style for positioning on the image found in
+  // Style portion of each button.  Below style used in buttonStyle
+  btn: {
+    position: 'absolute',
+    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+    borderRadius: 50,
+  },
+})
 
 export default LiftIcon
