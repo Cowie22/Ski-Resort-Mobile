@@ -18,6 +18,13 @@ class LiftIcon extends React.Component {
         size={22}
         color="#2D68C4"
       />;
+      // Mini for small lift because it's too tight on the image
+      const miniSnowIcon = 
+      <Icon
+        name="snowflake-o"
+        size={14}
+        color="#2D68C4"
+      />;
       // Destructuring so I don't have to write this.props,
       // handleIcons controls which part of the mountain is displayed
       const{ handleIcons } = this.props;
@@ -84,6 +91,46 @@ class LiftIcon extends React.Component {
           style={{top: 10, left: -74}}
           buttonStyle={styles.btn}
           onPress={() => handleIcons(8)}
+          type="clear"
+          TouchableOpacity={0.2}
+        />
+        <Button
+          icon={snowIcon}
+          style={{top: -8, left: -124}}
+          buttonStyle={styles.btn}
+          onPress={() => handleIcons(9)}
+          type="clear"
+          TouchableOpacity={0.2}
+        />
+        <Button
+          icon={snowIcon}
+          style={{top: -52, left: -162}}
+          buttonStyle={styles.btn}
+          onPress={() => handleIcons(10)}
+          type="clear"
+          TouchableOpacity={0.2}
+        />
+        <Button
+          icon={snowIcon}
+          style={{top: -108, left: -88}}
+          buttonStyle={styles.btn}
+          onPress={() => handleIcons(11)}
+          type="clear"
+          TouchableOpacity={0.2}
+        />
+        <Button
+          icon={snowIcon}
+          style={{top: -104, left: -14}}
+          buttonStyle={styles.btn}
+          onPress={() => handleIcons(12)}
+          type="clear"
+          TouchableOpacity={0.2}
+        />
+        <Button
+          icon={miniSnowIcon}
+          style={{top: 34, left: -104}}
+          buttonStyle={styles.btn}
+          onPress={() => handleIcons(13)}
           type="clear"
           TouchableOpacity={0.2}
         />
