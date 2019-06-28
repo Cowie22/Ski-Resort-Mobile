@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import {StyleSheet, Text, View, Image, ScrollView, Animated } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LookoutImg from '../../images/Lookout.jpg';
@@ -8,12 +8,23 @@ class Lookout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+      fadeAnim: new Animated.Value(0),
     }
   }
+  handleAnimation() {
+    Animated.timing(                  // Animate over time
+      this.state.fadeAnim,            // The animated value to drive
+      {
+        toValue: 1,                   // Animate to opacity: 1 (opaque)
+        duration: 1000,              // Make it take a while
+      }
+    ).start();
+  }
   render() {
+    this.props.mountainView === 1 ? this.handleAnimation() : null
     return (
-      <ScrollView minimumZoomScale={1} maximumZoomScale={5} style={{backgroundColor: 'black', color: '#fff'}}>
+      <Animated.ScrollView minimumZoomScale={1} maximumZoomScale={5}
+      style={{backgroundColor: 'black', color: '#fff', opacity: this.state.fadeAnim}}>
        <Image
           style={styles.nstar}
           source={{uri: 'https://easkiandsnowboard.com/assets/Uploads/_resampled/PadWyIzMDAiLCIyMDAiLCJGRkZGRkYiLDBd/LOGO-Northstar-USA.jpg'}}
@@ -31,11 +42,11 @@ class Lookout extends React.Component {
             />
           }
           buttonStyle={styles.btn}
-          onPress={() => this.props.handleHomeButton(0)}
+          onPress={() => this.props.handleIcons(0)}
           type="clear"
           TouchableOpacity={0.2}
         />
-      </ScrollView>
+      </Animated.ScrollView>
     );
   }
 }

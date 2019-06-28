@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Image, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Image, ImageBackground, Animated } from 'react-native';
 import axios from 'axios';
 import NorthStar from './images/xlarge.jpg';
 import { Tabs } from './src/router';
@@ -13,9 +13,9 @@ class App extends React.Component {
       runInfo: [],
       show: false,
       mountainView: 0,
+      fadeAnim: new Animated.Value(0),
     }
-    this.handleIconPress = this.handleIconPress.bind(this);
-    this.handleHomeButton = this.handleHomeButton.bind(this);
+    this.handleIcons = this.handleIcons.bind(this);
   }
   componentDidMount() {
     this.getRuns();
@@ -28,22 +28,26 @@ class App extends React.Component {
         });
       })
   }
-  handleIconPress(event) {
-    console.log(event)
+  handleIcons(event) {
     this.setState({
       mountainView: event,
     }, () => console.log(this.state.mountainView))
   }
-  handleHomeButton(event) {
-    this.setState({
-      mountainView: event,
-    })
+  handleAnimation() {
+    Animated.timing(                  // Animate over time
+      this.state.fadeAnim,            // The animated value to drive
+      {
+        toValue: 1,                   // Animate to opacity: 1 (opaque)
+        duration: 2000,              // Make it take a while
+      }
+    ).start();
   }
   render() {
     const { mountainView } = this.state;
+    mountainView === 0 ? this.handleAnimation() : null
     return (
       mountainView === 0 ?
-      <ScrollView style={{backgroundColor: 'black', color: '#fff'}}>
+      <Animated.ScrollView style={{backgroundColor: 'black', color: '#fff', opacity: this.state.fadeAnim}}>
         <Image
           style={styles.nstar}
           source={{uri: 'https://easkiandsnowboard.com/assets/Uploads/_resampled/PadWyIzMDAiLCIyMDAiLCJGRkZGRkYiLDBd/LOGO-Northstar-USA.jpg'}}
@@ -53,14 +57,15 @@ class App extends React.Component {
           source={NorthStar}
         >
         <LiftIcon
-          handleIconPress={this.handleIconPress}
+          handleIcons={this.handleIcons}
         />
         </ImageBackground>
         <Tabs />
-      </ScrollView>
+      </Animated.ScrollView>
       :
       <Lookout
-        handleHomeButton={this.handleHomeButton}
+        handleIcons={this.handleIcons}
+        mountainView={this.state.mountainView}
       />
     );
   }
