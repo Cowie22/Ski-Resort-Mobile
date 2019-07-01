@@ -8,6 +8,7 @@
     "server": "nodemon server/index.js"
   },
   "dependencies": {
+    "28": "^3.4.0",
     "axios": "^0.19.0",
     "express": "^4.17.1",
     "material-icons": "^0.3.1",

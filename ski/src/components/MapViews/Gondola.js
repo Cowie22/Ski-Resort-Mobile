@@ -2,9 +2,9 @@ import React from 'react';
 import {StyleSheet, Text, View, Image, ScrollView, Animated } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import MidMountainImg from '../../images/MidMountain.jpg';
+import GondolaImg from '../../../images/Gondola.jpg';
 
-class MidMountain extends React.Component {
+class Gondola extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,8 +22,8 @@ class MidMountain extends React.Component {
   }
   render() {
     const { mountainView, handleIcons } = this.props;
-    mountainView === 8 || mountainView === 9 ||
-    mountainView === 10 || mountainView === 13 ? this.handleAnimation() : null;
+    mountainView === 4 || mountainView === 5 ||
+    mountainView === 6 || mountainView === 7 ? this.handleAnimation() : null;
     return (
       <Animated.ScrollView minimumZoomScale={1} maximumZoomScale={5}
       style={{backgroundColor: 'black', color: '#fff', opacity: this.state.fadeAnim}}>
@@ -33,7 +33,7 @@ class MidMountain extends React.Component {
         />
         <Image
           style={styles.img}
-          source={MidMountainImg}
+          source={GondolaImg}
         />
         <Button
           icon={
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   img: {
     width: '100%',
-    height: 310,
+    height: 370,
     margin: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -80,4 +80,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default MidMountain
+export default Gondola

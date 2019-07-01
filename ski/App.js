@@ -3,12 +3,12 @@ import { StyleSheet, Text, View, ScrollView, Image, ImageBackground, Animated } 
 import axios from 'axios';
 import NorthStar from './images/xlarge.jpg';
 // import { Tabs } from './src/router';
-import Lookout from './src/components/Lookout';
-import LiftIcon from './src/components/LiftIcon';
-import Backside from './src/components/Backside';
-import Gondola from './src/components/Gondola';
-import MidMountain from './src/components/MidMountain';
-import Summit from './src/components/Summit';
+import LiftIcon from './src/components/Icons/LiftIcon';
+import Lookout from './src/components/MapViews/Lookout';
+import Backside from './src/components/MapViews/Backside';
+import Gondola from './src/components/MapViews/Gondola';
+import MidMountain from './src/components/MapViews/MidMountain';
+import Summit from './src/components/MapViews/Summit';
 
 class App extends React.Component {
   constructor(props) {

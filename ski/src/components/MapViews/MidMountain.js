@@ -2,9 +2,9 @@ import React from 'react';
 import {StyleSheet, Text, View, Image, ScrollView, Animated } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import SummitImg from '../../images/Summit.jpg';
+import MidMountainImg from '../../../images/MidMountain.jpg';
 
-class Summit extends React.Component {
+class MidMountain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +22,8 @@ class Summit extends React.Component {
   }
   render() {
     const { mountainView, handleIcons } = this.props;
-    mountainView === 11 || mountainView === 12 ? this.handleAnimation() : null;
+    mountainView === 8 || mountainView === 9 ||
+    mountainView === 10 || mountainView === 13 ? this.handleAnimation() : null;
     return (
       <Animated.ScrollView minimumZoomScale={1} maximumZoomScale={5}
       style={{backgroundColor: 'black', color: '#fff', opacity: this.state.fadeAnim}}>
@@ -32,7 +33,7 @@ class Summit extends React.Component {
         />
         <Image
           style={styles.img}
-          source={SummitImg}
+          source={MidMountainImg}
         />
         <Button
           icon={
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
   },
   img: {
     width: '100%',
-    height: 326,
+    height: 310,
     margin: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -79,4 +80,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Summit
+export default MidMountain
