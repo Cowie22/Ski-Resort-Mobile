@@ -9,6 +9,7 @@ import Backside from './src/components/MapViews/Backside';
 import Gondola from './src/components/MapViews/Gondola';
 import MidMountain from './src/components/MapViews/MidMountain';
 import Summit from './src/components/MapViews/Summit';
+import Search from './src/components/SearchBar/Search';
 
 class App extends React.Component {
   constructor(props) {
@@ -56,6 +57,7 @@ class App extends React.Component {
           style={styles.nstar}
           source={{uri: 'https://easkiandsnowboard.com/assets/Uploads/_resampled/PadWyIzMDAiLCIyMDAiLCJGRkZGRkYiLDBd/LOGO-Northstar-USA.jpg'}}
         />
+        <Search />
         <ImageBackground
           style={styles.img}
           source={NorthStar}
