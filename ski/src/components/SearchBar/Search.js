@@ -2,36 +2,43 @@ import React from 'react';
 import { StyleSheet, Text, Picker, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Dropdown } from 'react-native-material-dropdown';
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lift: 'Cowie',
+      canada: '',
     }
   }
-  updateLift(event) {
-    this.setState({
-      lift: event
-    });
-  }
   render() {
+    let data = [];
+    this.props.liftInfo.map((lift, i) => {
+      let liftObj = {
+        value: lift.name,
+      }
+      data.push(liftObj)
+    })
     return (
-      <View>
-        <Picker
-        selectedValue={this.state.lift}
-        onValueChange={this.updateLift}
-        style={styles.dropdown}
-        mode="dropdown"
-        iosIcon={<Icon />}
-        itemStyle={{color: 'blue', backgroundColor:'#fff'}}
-        >
-        <Picker.Item label = "Steve" value = "steve" />
-        <Picker.Item label = "Ellen" value = "ellen" />
-        <Picker.Item label = "Maria" value = "maria" />
-      </Picker>
-      <Text style={styles.text}>{this.state.lift}</Text>
-    </View>
+      <Dropdown
+        label='CHAIR LIFTS'
+        data={data}
+        labelPadding={400}
+        fontSize={20}
+        labelFontSize={20}
+        animationDuration={200}
+        baseColor='rgb(125, 24, 24)'
+        itemColor='rgb(125, 24, 24)'
+        selectedItemColor='rgb(125, 24, 24)'
+        shadeOpacity={0.12}
+        rippleOpacity={0.52}
+        containerStyle={styles.dropdown}
+        pickerStyle={styles.dropList}
+        onChangeText={(value, index, data) => {
+          this.props.handleIcons(index + 1)
+        }}
+      >
+      </Dropdown>
     );
   }
 }
@@ -44,12 +51,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   dropdown: {
-    height: 50,
-    width: '100%',
-    backgroundColor: 'red',
-    color: '#747474',
-    marginLeft: -8,
-    marginTop: 2,
+    marginTop: -20,
+  },
+  dropList: {
+    backgroundColor: 'black',
   },
   text: {
     fontSize: 30,

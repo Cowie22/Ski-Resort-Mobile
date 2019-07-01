@@ -10,7 +10,13 @@ async function getAllRuns() {
   return result;
 };
 
+// gets all lifts from database using async and await
+async function getAllLifts() {
+  const queryStr = 'SELECT * FROM lifts';
+  const result = await pool.query(queryStr);
+  return result;
+};
 
 module.exports = {
-  getAllRuns,
+  getAllRuns, getAllLifts
 }

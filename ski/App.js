@@ -16,6 +16,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       runInfo: [],
+      liftInfo: [],
       show: false,
       mountainView: 0,
       fadeAnim: new Animated.Value(0),
@@ -24,7 +25,9 @@ class App extends React.Component {
   }
   componentDidMount() {
     this.getRuns();
+    this.getLifts();
   }
+  // Gets run data from the database, called in componentDidMount
   getRuns() {
     axios.get(`http://localhost:2228/run`)
       .then(res => {
@@ -33,6 +36,17 @@ class App extends React.Component {
         });
       })
   }
+  // Gets lift data from the database, called in componentDidMount
+  getLifts() {
+    axios.get(`http://localhost:2228/lift`)
+      .then(res => {
+        console.log(res.data)
+        this.setState({
+          liftInfo: res.data,
+        });
+      })
+  }
+  // Handles the icons clicked, so that the proper Map View is displayed
   handleIcons(event) {
     this.setState({
       mountainView: event,
@@ -57,7 +71,11 @@ class App extends React.Component {
           style={styles.nstar}
           source={{uri: 'https://easkiandsnowboard.com/assets/Uploads/_resampled/PadWyIzMDAiLCIyMDAiLCJGRkZGRkYiLDBd/LOGO-Northstar-USA.jpg'}}
         />
-        <Search />
+        <Search
+          handleIcons={this.handleIcons}
+          mountainView={this.state.mountainView}
+          liftInfo={this.state.liftInfo}
+        />
         <ImageBackground
           style={styles.img}
           source={NorthStar}
