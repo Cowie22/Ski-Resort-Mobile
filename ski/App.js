@@ -90,25 +90,30 @@ class App extends React.Component {
       <Lookout
         handleIcons={this.handleIcons}
         mountainView={this.state.mountainView}
+        runInfo={this.state.runInfo}
       />
       : mountainView === 2 || mountainView === 3 ?
       <Backside
         handleIcons={this.handleIcons}
         mountainView={this.state.mountainView}
+        runInfo={this.state.runInfo}
       />
       : mountainView === 4 || mountainView === 5 || mountainView === 6 || mountainView === 7 ?
       <Gondola
         handleIcons={this.handleIcons}
         mountainView={this.state.mountainView}
+        runInfo={this.state.runInfo}
       />
       : mountainView === 8 || mountainView === 9 || mountainView === 10 || mountainView === 13 ?
       <MidMountain
         handleIcons={this.handleIcons}
         mountainView={this.state.mountainView}
+        runInfo={this.state.runInfo}
       /> :
       <Summit
         handleIcons={this.handleIcons}
         mountainView={this.state.mountainView}
+        runInfo={this.state.runInfo}
       />
     );
   }

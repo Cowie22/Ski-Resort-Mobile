@@ -3,6 +3,7 @@ import {StyleSheet, Text, View, Image, ScrollView, Animated } from 'react-native
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import GondolaImg from '../../../images/Gondola.jpg';
+import RunSearch from '../SearchBar/RunSearch';
 
 class Gondola extends React.Component {
   constructor(props) {
@@ -30,6 +31,11 @@ class Gondola extends React.Component {
        <Image
           style={styles.nstar}
           source={{uri: 'https://easkiandsnowboard.com/assets/Uploads/_resampled/PadWyIzMDAiLCIyMDAiLCJGRkZGRkYiLDBd/LOGO-Northstar-USA.jpg'}}
+        />
+        <RunSearch
+          handleIcons={this.props.handleIcons}
+          mountainView={this.props.mountainView}
+          runInfo={this.props.runInfo}
         />
         <Image
           style={styles.img}
