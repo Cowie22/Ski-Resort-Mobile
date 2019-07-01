@@ -3,8 +3,8 @@ import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
 import { Icon } from 'react-native-elements';
 
 import App from '../App';
-import Ski from './components/Ski';
-import Trail from './components/Trail';
+// import Ski from './components/Ski';
+// import Trail from './components/Trail';
 
 const Tab = createBottomTabNavigator({
   Home: {

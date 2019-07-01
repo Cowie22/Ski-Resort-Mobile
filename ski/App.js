@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, ScrollView, Image, ImageBackground, Animated } from 'react-native';
 import axios from 'axios';
 import NorthStar from './images/xlarge.jpg';
-import { Tabs } from './src/router';
+// import { Tabs } from './src/router';
 import Lookout from './src/components/Lookout';
 import LiftIcon from './src/components/LiftIcon';
 import Backside from './src/components/Backside';
@@ -64,7 +64,7 @@ class App extends React.Component {
           handleIcons={this.handleIcons}
         />
         </ImageBackground>
-        <Tabs />
+        {/* <Tabs /> */}
       </Animated.ScrollView>
       : mountainView === 1 ?
       <Lookout

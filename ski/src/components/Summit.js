@@ -4,7 +4,7 @@ import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SummitImg from '../../images/Summit.jpg';
 
-class MidMountain extends React.Component {
+class Summit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default MidMountain
+export default Summit
