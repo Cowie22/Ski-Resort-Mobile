@@ -4,6 +4,18 @@ import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Dropdown } from 'react-native-material-dropdown';
 
+const getLiftRuns = (runInfoProps, liftID) => {
+  let info = [];
+  runInfoProps.map((run, i) => {
+    if (run.lift_id === liftID) {
+      let runObj = {
+        value: run.name,
+      }
+      info.push(runObj);
+    }
+  })
+  return info;
+}
 class RunSearch extends React.Component {
   constructor(props) {
     super(props);
@@ -14,26 +26,19 @@ class RunSearch extends React.Component {
   render() {
     const { mountainView, runInfo } = this.props;
     let data = [];
-    mountainView === 1 ?
-    runInfo.map((run, i) => {
-      if (run.lift_id === 1) {
-        let runObj = {
-          value: run.name,
-        }
-        data.push(runObj)
-      }
-    })
-    :
-    mountainView === 2 || mountainView === 3 ?
-    runInfo.map((run, i) => {
-      if (run.lift_id === 2 || run.lift_id === 3) {
-        let runObj = {
-          value: run.name,
-        }
-        data.push(runObj)
-      }
-    })
-    :
+    mountainView === 1 ? data = getLiftRuns(runInfo, 1) :
+    mountainView === 2 ? data = getLiftRuns(runInfo, 2) :
+    mountainView === 3 ? data = getLiftRuns(runInfo, 3) :
+    mountainView === 4 ? data = getLiftRuns(runInfo, 4) :
+    mountainView === 5 ? data = getLiftRuns(runInfo, 5) :
+    mountainView === 6 ? data = getLiftRuns(runInfo, 6) :
+    mountainView === 7 ? data = getLiftRuns(runInfo, 7) :
+    mountainView === 8 ? data = getLiftRuns(runInfo, 8) :
+    mountainView === 9 ? data = getLiftRuns(runInfo, 9) :
+    mountainView === 10 ? data = getLiftRuns(runInfo, 10) :
+    mountainView === 11 ? data = getLiftRuns(runInfo, 11) :
+    mountainView === 12 ? data = getLiftRuns(runInfo, 12) :
+    mountainView === 13 ? data = getLiftRuns(runInfo, 13) :
     null
     return (
       <Dropdown
@@ -50,6 +55,7 @@ class RunSearch extends React.Component {
         rippleOpacity={0.52}
         containerStyle={styles.dropdown}
         pickerStyle={styles.dropList}
+        // Place holder function.  Need to change with highlight function
         onChangeText={(value, index, data) => {
           this.props.handleIcons(index + 1)
         }}
