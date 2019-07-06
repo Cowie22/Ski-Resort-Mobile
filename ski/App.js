@@ -11,6 +11,7 @@ import MidMountain from './src/components/MapViews/MidMountain';
 import Summit from './src/components/MapViews/Summit';
 import Search from './src/components/SearchBar/Search';
 import FilterRuns from './src/components/SearchBar/FilterRuns';
+import Display from './src/components/InformationDisplay/Display';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,11 +19,13 @@ class App extends React.Component {
     this.state = {
       runInfo: [],
       liftInfo: [],
+      oneRunInfo: [],
       show: false,
       mountainView: 0,
       fadeAnim: new Animated.Value(0),
     }
     this.handleIcons = this.handleIcons.bind(this);
+    this.handleRunSelection = this.handleRunSelection.bind(this);
   }
   componentDidMount() {
     this.getRuns();
@@ -41,11 +44,19 @@ class App extends React.Component {
   getLifts() {
     axios.get(`http://localhost:2228/lift`)
       .then(res => {
-        console.log(res.data)
         this.setState({
           liftInfo: res.data,
         });
       })
+    }
+    // Gets one run info depending on user click.  Used for Display.js
+  handleRunSelection(id) {
+    axios.get(`http://localhost:2228/run/${id}`)
+    .then(res => {
+      this.setState({
+        oneRunInfo: res.data[0],
+      })
+    })
   }
   // Handles the icons clicked, so that the proper Map View is displayed
   handleIcons(event) {
@@ -65,6 +76,7 @@ class App extends React.Component {
   render() {
     const { mountainView } = this.state;
     mountainView === 0 ? this.handleAnimation() : null;
+    console.log(this.state.oneRunInfo)
     return (
       mountainView === 0 ?
       <Animated.ScrollView style={{backgroundColor: 'black', color: '#fff', opacity: this.state.fadeAnim}}>
@@ -88,6 +100,9 @@ class App extends React.Component {
           handleIcons={this.handleIcons}
         />
         </ImageBackground>
+        {/* <Display
+          oneRunInfo={this.state.oneRunInfo}
+        /> */}
         {/* <Tabs /> */}
       </Animated.ScrollView>
       : mountainView === 1 ?
@@ -95,29 +110,39 @@ class App extends React.Component {
         handleIcons={this.handleIcons}
         mountainView={this.state.mountainView}
         runInfo={this.state.runInfo}
+        handleRunSelection={this.handleRunSelection}
+        oneRunInfo={this.state.oneRunInfo}
       />
       : mountainView === 2 || mountainView === 3 ?
       <Backside
         handleIcons={this.handleIcons}
         mountainView={this.state.mountainView}
         runInfo={this.state.runInfo}
+        handleRunSelection={this.handleRunSelection}
+        oneRunInfo={this.state.oneRunInfo}
       />
       : mountainView === 4 || mountainView === 5 || mountainView === 6 || mountainView === 7 ?
       <Gondola
         handleIcons={this.handleIcons}
         mountainView={this.state.mountainView}
         runInfo={this.state.runInfo}
+        handleRunSelection={this.handleRunSelection}
+        oneRunInfo={this.state.oneRunInfo}
       />
       : mountainView === 8 || mountainView === 9 || mountainView === 10 || mountainView === 13 ?
       <MidMountain
         handleIcons={this.handleIcons}
         mountainView={this.state.mountainView}
         runInfo={this.state.runInfo}
+        handleRunSelection={this.handleRunSelection}
+        oneRunInfo={this.state.oneRunInfo}
       /> :
       <Summit
         handleIcons={this.handleIcons}
         mountainView={this.state.mountainView}
         runInfo={this.state.runInfo}
+        handleRunSelection={this.handleRunSelection}
+        oneRunInfo={this.state.oneRunInfo}
       />
     );
   }

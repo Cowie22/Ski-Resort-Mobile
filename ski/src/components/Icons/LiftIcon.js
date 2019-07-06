@@ -19,7 +19,7 @@ class LiftIcon extends React.Component {
         color="#2D68C4"
       />;
       // Mini for small lift because it's too tight on the image
-      const miniSnowIcon = 
+      const miniSnowIcon =
       <Icon
         name="snowflake-o"
         size={14}

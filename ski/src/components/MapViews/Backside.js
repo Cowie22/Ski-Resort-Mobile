@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import BacksideImg from '../../../images/Backside.jpg';
 import RunSearch from '../SearchBar/RunSearch';
 import FilterRuns from '../SearchBar/FilterRuns';
+import Display from '../InformationDisplay/Display';
 
 class Backside extends React.Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class Backside extends React.Component {
   render() {
     const { mountainView, handleIcons } = this.props;
     mountainView === 2 || mountainView === 3 ? this.handleAnimation() : null;
+    console.log(this.props.oneRunInfo)
     return (
       <Animated.ScrollView minimumZoomScale={1} maximumZoomScale={5}
       style={{backgroundColor: 'black', color: '#fff', opacity: this.state.fadeAnim}}>
@@ -36,6 +38,7 @@ class Backside extends React.Component {
           handleIcons={this.props.handleIcons}
           mountainView={this.props.mountainView}
           runInfo={this.props.runInfo}
+          handleRunSelection={this.props.handleRunSelection}
         />
         <FilterRuns
         
@@ -43,6 +46,9 @@ class Backside extends React.Component {
         <Image
           style={styles.img}
           source={BacksideImg}
+        />
+        <Display
+          oneRunInfo={this.props.oneRunInfo}
         />
         <Button
           icon={

@@ -10,6 +10,7 @@ const getLiftRuns = (runInfoProps, liftID) => {
     if (run.lift_id === liftID) {
       let runObj = {
         value: run.name,
+        runID: run.id,
       }
       info.push(runObj);
     }
@@ -51,13 +52,19 @@ class RunSearch extends React.Component {
         baseColor='rgb(125, 24, 24)'
         itemColor='rgb(125, 24, 24)'
         selectedItemColor='rgb(125, 24, 24)'
+        textColor='rgb(125, 24, 24)'
         shadeOpacity={0.12}
         rippleOpacity={0.52}
         containerStyle={styles.dropdown}
         pickerStyle={styles.dropList}
-        // Place holder function.  Need to change with highlight function
         onChangeText={(value, index, data) => {
-          this.props.handleIcons(index + 1)
+          let currentRunID = 0;
+          data.filter((run, i) => {
+            if (run.value === value) {
+              currentRunID = run.runID
+            }
+          })
+          this.props.handleRunSelection(currentRunID)
         }}
       >
       </Dropdown>

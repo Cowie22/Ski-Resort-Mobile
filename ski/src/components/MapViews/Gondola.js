@@ -6,6 +6,7 @@ import GondolaImg from '../../../images/Gondola.jpg';
 import RunSearch from '../SearchBar/RunSearch';
 import FilterRuns from '../SearchBar/FilterRuns';
 
+
 class Gondola extends React.Component {
   constructor(props) {
     super(props);
@@ -37,6 +38,7 @@ class Gondola extends React.Component {
           handleIcons={this.props.handleIcons}
           mountainView={this.props.mountainView}
           runInfo={this.props.runInfo}
+          handleRunSelection={this.props.handleRunSelection}
         />
         <FilterRuns
         
@@ -44,6 +46,9 @@ class Gondola extends React.Component {
         <Image
           style={styles.img}
           source={GondolaImg}
+        />
+        <Display
+          oneRunInfo={this.props.oneRunInfo}
         />
         <Button
           icon={

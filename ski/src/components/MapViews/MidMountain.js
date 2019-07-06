@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import MidMountainImg from '../../../images/MidMountain.jpg';
 import RunSearch from '../SearchBar/RunSearch';
 import FilterRuns from '../SearchBar/FilterRuns';
+import Display from '../InformationDisplay/Display';
 
 class MidMountain extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class MidMountain extends React.Component {
           handleIcons={this.props.handleIcons}
           mountainView={this.props.mountainView}
           runInfo={this.props.runInfo}
+          handleRunSelection={this.props.handleRunSelection}
         />
         <FilterRuns
         
@@ -44,6 +46,9 @@ class MidMountain extends React.Component {
         <Image
           style={styles.img}
           source={MidMountainImg}
+        />
+        <Display
+          oneRunInfo={this.props.oneRunInfo}
         />
         <Button
           icon={
