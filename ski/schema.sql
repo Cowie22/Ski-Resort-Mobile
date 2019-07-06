@@ -186,6 +186,9 @@ INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vert
 INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, lift_id) VALUES ("Lookout Road", "Blue Square: More Difficult", 1, 0, 0, 1, 1220, '20 Minutes', 12);
 INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, lift_id) VALUES ("Coyboy Pass", "Blue Square: More Difficult", 1, 0, 0, 1, 1220, '20 Minutes', 12);
 
+-- Big East
+
+INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, lift_id) VALUES ("Lower Lion's Way", "Green Circle: Easiest Way Down", 1, 0, 0, 1, 270, '20 Minutes', 13);
 
 -- Places Restaurants
 

@@ -34,12 +34,20 @@ class Display extends React.Component {
     return (
       id > 0 ?
       <ImageBackground style={styles.container} source={gifArray[Math.floor(Math.random() * gifArray.length)]}>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.terrain}>{terrain}</Text>
-        <Text style={styles.groomed}>{groomed === 1 ? 'Groomed' : 'Not Groomed'}</Text>
-        <Text style={styles.status}>{status === 1 ? 'OPEN' : 'CLOSED'}</Text>
-        <Text style={styles.waitTime}>{wait_time}</Text>
-        <Text style={styles.verticalFeet}>{vertical_feet} Vertical Feet!</Text>
+        <Text style={[styles.text]}>{name}</Text>
+        <Text
+        style={terrain === 'Black Diamond: Most Difficult' ? [styles.text, styles.blackDiamond] :
+        terrain === 'Blue Square: More Difficult' ? [styles.text, styles.blueSquare] :
+        terrain === 'Green Circle: Easiest Way Down' ? [styles.text, styles.greenCircle] :
+        [styles.text, styles.terrainPark]}>{terrain}
+        </Text>
+        <Text style={groomed === 1 ? [styles.text, styles.goodToGo] :
+        [styles.text, styles.moreDangerous]}>{groomed === 1 ? 'Groomed' : 'Not Groomed'}
+        </Text>
+        <Text style={status === 1 ? [styles.text, styles.goodToGo] :
+        [styles.text, styles.moreDangerous]}>{status === 1 ? 'OPEN' : 'CLOSED'}</Text>
+        <Text style={[styles.text]}>WAIT TIME: {wait_time}</Text>
+        <Text style={[styles.text]}>{vertical_feet} Vertical Feet!</Text>
       </ImageBackground>
       :
       null
@@ -52,43 +60,35 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    color: '#0062ff',
+    fontSize: 18,
+    fontWeight: 'bold',
+    fontFamily: 'Georgia-Bold',
     // backgroundImage: url('https://media2.giphy.com/media/YczRJkWkGKy5i/giphy.gif'),
   },
-  name: {
+  text: {
     color: '#0062ff',
     fontSize: 18,
     fontWeight: 'bold',
     fontFamily: 'Georgia-Bold'
   },
-  terrain: {
-    color: '#0062ff',
-    fontSize: 18,
-    fontWeight: 'bold',
-    fontFamily: 'Georgia-Bold'
+  blackDiamond: {
+    color: '#000000',
   },
-  groomed: {
+  blueSquare: {
     color: '#0062ff',
-    fontSize: 18,
-    fontWeight: 'bold',
-    fontFamily: 'Georgia-Bold'
   },
-  status: {
-    color: '#0062ff',
-    fontSize: 18,
-    fontWeight: 'bold',
-    fontFamily: 'Georgia-Bold'
+  greenCircle: {
+    color: '#008702',
   },
-  waitTime: {
-    color: '#0062ff',
-    fontSize: 18,
-    fontWeight: 'bold',
-    fontFamily: 'Georgia-Bold'
+  terrainPark: {
+    color: '#ff6200',
   },
-  verticalFeet: {
-    color: '#0062ff',
-    fontSize: 18,
-    fontWeight: 'bold',
-    fontFamily: 'Georgia-Bold'
+  goodToGo: {
+    color: '#008702',
+  },
+  moreDangerous: {
+    color: 'rgb(125, 24, 24)',
   },
 });
 
