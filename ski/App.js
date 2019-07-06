@@ -10,6 +10,7 @@ import Gondola from './src/components/MapViews/Gondola';
 import MidMountain from './src/components/MapViews/MidMountain';
 import Summit from './src/components/MapViews/Summit';
 import Search from './src/components/SearchBar/Search';
+import FilterRuns from './src/components/SearchBar/FilterRuns';
 
 class App extends React.Component {
   constructor(props) {
@@ -75,6 +76,9 @@ class App extends React.Component {
           handleIcons={this.handleIcons}
           mountainView={this.state.mountainView}
           liftInfo={this.state.liftInfo}
+        />
+        <FilterRuns
+          
         />
         <ImageBackground
           style={styles.img}

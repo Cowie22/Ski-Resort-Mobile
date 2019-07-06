@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import GondolaImg from '../../../images/Gondola.jpg';
 import RunSearch from '../SearchBar/RunSearch';
+import FilterRuns from '../SearchBar/FilterRuns';
 
 class Gondola extends React.Component {
   constructor(props) {
@@ -36,6 +37,9 @@ class Gondola extends React.Component {
           handleIcons={this.props.handleIcons}
           mountainView={this.props.mountainView}
           runInfo={this.props.runInfo}
+        />
+        <FilterRuns
+        
         />
         <Image
           style={styles.img}

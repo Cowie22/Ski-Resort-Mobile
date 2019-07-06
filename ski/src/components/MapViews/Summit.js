@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SummitImg from '../../../images/Summit.jpg';
 import RunSearch from '../SearchBar/RunSearch';
+import FilterRuns from '../SearchBar/FilterRuns';
 
 class Summit extends React.Component {
   constructor(props) {
@@ -35,6 +36,9 @@ class Summit extends React.Component {
           handleIcons={this.props.handleIcons}
           mountainView={this.props.mountainView}
           runInfo={this.props.runInfo}
+        />
+        <FilterRuns
+        
         />
         <Image
           style={styles.img}

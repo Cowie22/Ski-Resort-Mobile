@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BacksideImg from '../../../images/Backside.jpg';
 import RunSearch from '../SearchBar/RunSearch';
+import FilterRuns from '../SearchBar/FilterRuns';
 
 class Backside extends React.Component {
   constructor(props) {
@@ -35,6 +36,9 @@ class Backside extends React.Component {
           handleIcons={this.props.handleIcons}
           mountainView={this.props.mountainView}
           runInfo={this.props.runInfo}
+        />
+        <FilterRuns
+        
         />
         <Image
           style={styles.img}

@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LookoutImg from '../../../images/Lookout.jpg';
 import RunSearch from '../SearchBar/RunSearch';
+import FilterRuns from '../SearchBar/FilterRuns';
 
 
 class Lookout extends React.Component {
@@ -36,6 +37,9 @@ class Lookout extends React.Component {
           handleIcons={this.props.handleIcons}
           mountainView={this.props.mountainView}
           runInfo={this.props.runInfo}
+        />
+        <FilterRuns
+        
         />
         <Image
           style={styles.img}
