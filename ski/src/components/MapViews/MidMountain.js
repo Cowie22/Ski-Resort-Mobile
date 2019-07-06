@@ -24,7 +24,7 @@ class MidMountain extends React.Component {
     ).start();
   }
   render() {
-    const { mountainView, handleIcons } = this.props;
+    const { mountainView, handleIcons, handleBaseState } = this.props;
     mountainView === 8 || mountainView === 9 ||
     mountainView === 10 || mountainView === 13 ? this.handleAnimation() : null;
     return (
@@ -49,6 +49,7 @@ class MidMountain extends React.Component {
         />
         <Display
           oneRunInfo={this.props.oneRunInfo}
+          currentRunID={this.props.currentRunID}
         />
         <Button
           icon={
@@ -59,7 +60,10 @@ class MidMountain extends React.Component {
             />
           }
           buttonStyle={styles.btn}
-          onPress={() => handleIcons(0)}
+          onPress={() => {
+            handleIcons(0);
+            handleBaseState();
+          }}
           type="clear"
           TouchableOpacity={0.2}
         />

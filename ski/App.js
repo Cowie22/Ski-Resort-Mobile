@@ -11,7 +11,6 @@ import MidMountain from './src/components/MapViews/MidMountain';
 import Summit from './src/components/MapViews/Summit';
 import Search from './src/components/SearchBar/Search';
 import FilterRuns from './src/components/SearchBar/FilterRuns';
-import Display from './src/components/InformationDisplay/Display';
 
 class App extends React.Component {
   constructor(props) {
@@ -22,14 +21,22 @@ class App extends React.Component {
       oneRunInfo: [],
       show: false,
       mountainView: 0,
+      currentRunID: 0,
       fadeAnim: new Animated.Value(0),
     }
     this.handleIcons = this.handleIcons.bind(this);
     this.handleRunSelection = this.handleRunSelection.bind(this);
+    this.handleBaseState = this.handleBaseState.bind(this);
   }
   componentDidMount() {
     this.getRuns();
     this.getLifts();
+  }
+  // Handler so that display is recent on home button click
+  handleBaseState() {
+    this.setState({
+      currentRunID: 0,
+    })
   }
   // Gets run data from the database, called in componentDidMount
   getRuns() {
@@ -55,6 +62,7 @@ class App extends React.Component {
     .then(res => {
       this.setState({
         oneRunInfo: res.data[0],
+        currentRunID: id,
       })
     })
   }
@@ -76,7 +84,16 @@ class App extends React.Component {
   render() {
     const { mountainView } = this.state;
     mountainView === 0 ? this.handleAnimation() : null;
-    console.log(this.state.oneRunInfo)
+    // All of the props shared amongst the conditional renders below
+    const mountainViewProps = {
+      handleIcons: this.handleIcons,
+      mountainView: this.state.mountainView,
+      runInfo: this.state.runInfo,
+      handleRunSelection: this.handleRunSelection,
+      oneRunInfo: this.state.oneRunInfo,
+      handleBaseState: this.handleBaseState,
+      currentRunID: this.state.currentRunID,
+    }
     return (
       mountainView === 0 ?
       <Animated.ScrollView style={{backgroundColor: 'black', color: '#fff', opacity: this.state.fadeAnim}}>
@@ -90,7 +107,6 @@ class App extends React.Component {
           liftInfo={this.state.liftInfo}
         />
         <FilterRuns
-          
         />
         <ImageBackground
           style={styles.img}
@@ -100,49 +116,26 @@ class App extends React.Component {
           handleIcons={this.handleIcons}
         />
         </ImageBackground>
-        {/* <Display
-          oneRunInfo={this.state.oneRunInfo}
-        /> */}
         {/* <Tabs /> */}
       </Animated.ScrollView>
       : mountainView === 1 ?
       <Lookout
-        handleIcons={this.handleIcons}
-        mountainView={this.state.mountainView}
-        runInfo={this.state.runInfo}
-        handleRunSelection={this.handleRunSelection}
-        oneRunInfo={this.state.oneRunInfo}
+        {...mountainViewProps}
       />
       : mountainView === 2 || mountainView === 3 ?
       <Backside
-        handleIcons={this.handleIcons}
-        mountainView={this.state.mountainView}
-        runInfo={this.state.runInfo}
-        handleRunSelection={this.handleRunSelection}
-        oneRunInfo={this.state.oneRunInfo}
+        {...mountainViewProps}
       />
       : mountainView === 4 || mountainView === 5 || mountainView === 6 || mountainView === 7 ?
       <Gondola
-        handleIcons={this.handleIcons}
-        mountainView={this.state.mountainView}
-        runInfo={this.state.runInfo}
-        handleRunSelection={this.handleRunSelection}
-        oneRunInfo={this.state.oneRunInfo}
+        {...mountainViewProps}
       />
       : mountainView === 8 || mountainView === 9 || mountainView === 10 || mountainView === 13 ?
       <MidMountain
-        handleIcons={this.handleIcons}
-        mountainView={this.state.mountainView}
-        runInfo={this.state.runInfo}
-        handleRunSelection={this.handleRunSelection}
-        oneRunInfo={this.state.oneRunInfo}
+        {...mountainViewProps}
       /> :
       <Summit
-        handleIcons={this.handleIcons}
-        mountainView={this.state.mountainView}
-        runInfo={this.state.runInfo}
-        handleRunSelection={this.handleRunSelection}
-        oneRunInfo={this.state.oneRunInfo}
+        {...mountainViewProps}
       />
     );
   }

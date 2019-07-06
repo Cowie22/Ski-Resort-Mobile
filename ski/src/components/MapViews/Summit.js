@@ -24,7 +24,7 @@ class Summit extends React.Component {
     ).start();
   }
   render() {
-    const { mountainView, handleIcons } = this.props;
+    const { mountainView, handleIcons, handleBaseState } = this.props;
     mountainView === 11 || mountainView === 12 ? this.handleAnimation() : null;
     return (
       <Animated.ScrollView minimumZoomScale={1} maximumZoomScale={5}
@@ -48,6 +48,7 @@ class Summit extends React.Component {
         />
         <Display
           oneRunInfo={this.props.oneRunInfo}
+          currentRunID={this.props.currentRunID}
         />
         <Button
           icon={
@@ -58,7 +59,10 @@ class Summit extends React.Component {
             />
           }
           buttonStyle={styles.btn}
-          onPress={() => handleIcons(0)}
+          onPress={() => {
+            handleIcons(0);
+            handleBaseState();
+          }}
           type="clear"
           TouchableOpacity={0.2}
         />

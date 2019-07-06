@@ -6,12 +6,14 @@ import BacksideImg from '../../../images/Backside.jpg';
 import RunSearch from '../SearchBar/RunSearch';
 import FilterRuns from '../SearchBar/FilterRuns';
 import Display from '../InformationDisplay/Display';
+import SkierDude from '../Icons/SkierDude';
 
 class Backside extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       fadeAnim: new Animated.Value(0),
+      skierAnim: new Animated.ValueXY({ x: 10, y: 450 })
     }
   }
   handleAnimation() {
@@ -24,7 +26,7 @@ class Backside extends React.Component {
     ).start();
   }
   render() {
-    const { mountainView, handleIcons } = this.props;
+    const { mountainView, handleIcons, handleBaseState } = this.props;
     mountainView === 2 || mountainView === 3 ? this.handleAnimation() : null;
     console.log(this.props.oneRunInfo)
     return (
@@ -47,8 +49,10 @@ class Backside extends React.Component {
           style={styles.img}
           source={BacksideImg}
         />
+        <SkierDude />
         <Display
           oneRunInfo={this.props.oneRunInfo}
+          currentRunID={this.props.currentRunID}
         />
         <Button
           icon={
@@ -59,7 +63,10 @@ class Backside extends React.Component {
             />
           }
           buttonStyle={styles.btn}
-          onPress={() => handleIcons(0)}
+          onPress={() => {
+            handleIcons(0);
+            handleBaseState();
+          }}
           type="clear"
           TouchableOpacity={0.2}
         />

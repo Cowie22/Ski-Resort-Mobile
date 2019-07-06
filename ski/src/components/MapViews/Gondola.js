@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import GondolaImg from '../../../images/Gondola.jpg';
 import RunSearch from '../SearchBar/RunSearch';
 import FilterRuns from '../SearchBar/FilterRuns';
+import Display from '../InformationDisplay/Display';
 
 
 class Gondola extends React.Component {
@@ -24,7 +25,7 @@ class Gondola extends React.Component {
     ).start();
   }
   render() {
-    const { mountainView, handleIcons } = this.props;
+    const { mountainView, handleIcons, handleBaseState } = this.props;
     mountainView === 4 || mountainView === 5 ||
     mountainView === 6 || mountainView === 7 ? this.handleAnimation() : null;
     return (
@@ -49,6 +50,7 @@ class Gondola extends React.Component {
         />
         <Display
           oneRunInfo={this.props.oneRunInfo}
+          currentRunID={this.props.currentRunID}
         />
         <Button
           icon={
@@ -59,7 +61,10 @@ class Gondola extends React.Component {
             />
           }
           buttonStyle={styles.btn}
-          onPress={() => handleIcons(0)}
+          onPress={() => {
+            handleIcons(0);
+            handleBaseState();
+          }}
           type="clear"
           TouchableOpacity={0.2}
         />

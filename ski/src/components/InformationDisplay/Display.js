@@ -32,7 +32,7 @@ class Display extends React.Component {
       backgroundColor="black"
     />
     return (
-      id > 0 ?
+      this.props.currentRunID > 0 ?
       <ImageBackground style={styles.container} source={gifArray[Math.floor(Math.random() * gifArray.length)]}>
         <Text style={[styles.text]}>{name}</Text>
         <Text
@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     fontFamily: 'Georgia-Bold',
-    // backgroundImage: url('https://media2.giphy.com/media/YczRJkWkGKy5i/giphy.gif'),
   },
   text: {
     color: '#0062ff',

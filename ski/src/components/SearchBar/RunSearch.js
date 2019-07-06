@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, Picker, View } from 'react-native';
+import { StyleSheet, Text, Picker, View, Animated } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Dropdown } from 'react-native-material-dropdown';
@@ -21,7 +21,7 @@ class RunSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      
     }
   }
   render() {
