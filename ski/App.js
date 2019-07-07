@@ -25,12 +25,13 @@ class App extends React.Component {
       currentRunID: 0,
       fadeAnim: new Animated.Value(0),
       skierStart: new Animated.ValueXY({ x: 50, y: -310 }),
-      skierMove: () => {
+      skierMove: (currentX, currentY) => {
         Animated.loop(
           Animated.timing(this.state.skierStart, {
-            toValue: {x: 200, y: -200},
+            toValue: {x: currentX, y: currentY},
             duration: 3000,
-          }), {
+          }),
+          {
             iterations: 4
           }
         ).start()

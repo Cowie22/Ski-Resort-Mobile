@@ -11,7 +11,8 @@ import SkiContext from '../../Context/SkiContext';
     }
   }
   render() {
-    this.props.currentRunID > 0 ? SkiContext._currentValue.skierMove() : null
+    const { xValue, yValue } = this.props.oneRunInfo
+    this.props.currentRunID > 0 ? SkiContext._currentValue.skierMove(200, -80) : null
     return (
     <View style={styles.container}>
       <Animated.Image

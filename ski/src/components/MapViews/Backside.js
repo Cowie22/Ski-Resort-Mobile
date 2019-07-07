@@ -50,6 +50,7 @@ class Backside extends React.Component {
         />
         <SkierDude
           currentRunID={this.props.currentRunID}
+          oneRunInfo={this.props.oneRunInfo}
         />
         <Display
           oneRunInfo={this.props.oneRunInfo}

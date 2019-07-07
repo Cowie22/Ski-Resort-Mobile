@@ -66,7 +66,6 @@ class RunSearch extends React.Component {
             }
           })
           this.props.handleRunSelection(currentRunID);
-          // SkiContext._currentValue.skierMove;
         }}
       >
       </Dropdown>
