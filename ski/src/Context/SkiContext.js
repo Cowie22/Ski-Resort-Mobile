@@ -5,7 +5,7 @@ const SkiContext = React.createContext({
   skierStart: new Animated.ValueXY({ x: 50, y: -310 }),
   skierMove: () => {
     Animated.loop(
-      Animated.timing(skierStart.getLayout() , {
+      Animated.timing({ x: 50, y: -310 }, {
         toValue: {x: 200, y: -200},
         duration: 3000,
       }), {

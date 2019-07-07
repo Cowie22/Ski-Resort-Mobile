@@ -48,7 +48,9 @@ class Backside extends React.Component {
           style={styles.img}
           source={BacksideImg}
         />
-        <SkierDude />
+        <SkierDude
+          currentRunID={this.props.currentRunID}
+        />
         <Display
           oneRunInfo={this.props.oneRunInfo}
           currentRunID={this.props.currentRunID}

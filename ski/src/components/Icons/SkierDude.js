@@ -7,36 +7,19 @@ import SkiContext from '../../Context/SkiContext';
   constructor(props) {
     super(props);
     this.state = {
-      // skierAnim: new Animated.ValueXY({ x: 50, y: -310 }),
+
     }
-    // this.handleSkierAnimation = this.handleSkierAnimation.bind(this);
   }
-  // handleSkierAnimation() {
-  //   Animated.loop(
-  //     Animated.timing(this.state.skierAnim, {
-  //       toValue: {x: 200, y: -200},
-  //       duration: 3000,
-  //     }), {
-  //       iterations: 4
-  //     }
-  //   ).start()
-  // }
   render() {
+    this.props.currentRunID > 0 ? SkiContext._currentValue.skierMove() : null
     return (
-    <SkiContext.Consumer>
-      {({skierStart, skierMove}) => {
-      {console.log('context', skierStart)}
-        <View style={styles.container}>
-            <TouchableHighlight onPress={() => skierMove()}>
-              <Animated.Image
-              style={[styles.skierImage]}
-              source={vonn}
-              >
-              </Animated.Image>
-            </TouchableHighlight>
-        </View>
-      }}
-    </SkiContext.Consumer>
+    <View style={styles.container}>
+      <Animated.Image
+      style={[SkiContext._currentValue.skierStart.getLayout(), styles.skierImage]}
+      source={vonn}
+      >
+      </Animated.Image>
+    </View>
     );
   }
 }
@@ -51,7 +34,7 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     zIndex: 100,
-  }
+  },
 });
 
 export default SkierDude

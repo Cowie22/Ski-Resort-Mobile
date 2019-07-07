@@ -27,7 +27,7 @@ class App extends React.Component {
       skierStart: new Animated.ValueXY({ x: 50, y: -310 }),
       skierMove: () => {
         Animated.loop(
-          Animated.timing(skierStart.getLayout() , {
+          Animated.timing(this.state.skierStart, {
             toValue: {x: 200, y: -200},
             duration: 3000,
           }), {
@@ -106,9 +106,13 @@ class App extends React.Component {
       handleBaseState: this.handleBaseState,
       currentRunID: this.state.currentRunID,
     }
+    const skiContextValues = {
+      skierStart: this.state.skierStart,
+      skierMove: this.state.skierMove
+    }
     return (
       mountainView === 0 ?
-      <SkiContext.Provider value={[this.setState.skierStart, this.state.skierMove]}>
+      <SkiContext.Provider value={skiContextValues}>
         <Animated.ScrollView style={{backgroundColor: 'black', color: '#fff', opacity: this.state.fadeAnim}}>
           <Image
             style={styles.nstar}
@@ -133,31 +137,31 @@ class App extends React.Component {
         </Animated.ScrollView>
       </SkiContext.Provider>
       : mountainView === 1 ?
-      <SkiContext.Provider>
+      <SkiContext.Provider value={skiContextValues}>
         <Lookout
           {...mountainViewProps}
         />
       </SkiContext.Provider>
       : mountainView === 2 || mountainView === 3 ?
-      <SkiContext.Provider>
+      <SkiContext.Provider value={skiContextValues}>
         <Backside
           {...mountainViewProps}
         />
       </SkiContext.Provider>
       : mountainView === 4 || mountainView === 5 || mountainView === 6 || mountainView === 7 ?
-      <SkiContext.Provider>
+      <SkiContext.Provider value={skiContextValues}>
         <Gondola
           {...mountainViewProps}
         />
       </SkiContext.Provider>
       : mountainView === 8 || mountainView === 9 || mountainView === 10 || mountainView === 13 ?
-      <SkiContext.Provider>
+      <SkiContext.Provider value={skiContextValues}>
         <MidMountain
           {...mountainViewProps}
         />
       </SkiContext.Provider>
       :
-      <SkiContext.Provider>
+      <SkiContext.Provider value={skiContextValues}>
         <Summit
           {...mountainViewProps}
         />

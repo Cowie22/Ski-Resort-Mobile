@@ -3,6 +3,7 @@ import { StyleSheet, Text, Picker, View, Animated } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Dropdown } from 'react-native-material-dropdown';
+import SkiContext from '../../Context/SkiContext';
 
 const getLiftRuns = (runInfoProps, liftID) => {
   let info = [];
@@ -64,7 +65,8 @@ class RunSearch extends React.Component {
               currentRunID = run.runID
             }
           })
-          this.props.handleRunSelection(currentRunID)
+          this.props.handleRunSelection(currentRunID);
+          // SkiContext._currentValue.skierMove;
         }}
       >
       </Dropdown>
