@@ -13,7 +13,6 @@ class Backside extends React.Component {
     super(props);
     this.state = {
       fadeAnim: new Animated.Value(0),
-      skierAnim: new Animated.ValueXY({ x: 10, y: 450 })
     }
   }
   handleAnimation() {

@@ -11,6 +11,7 @@ import MidMountain from './src/components/MapViews/MidMountain';
 import Summit from './src/components/MapViews/Summit';
 import Search from './src/components/SearchBar/Search';
 import FilterRuns from './src/components/SearchBar/FilterRuns';
+import SkiContext from './src/Context/SkiContext';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,6 +24,17 @@ class App extends React.Component {
       mountainView: 0,
       currentRunID: 0,
       fadeAnim: new Animated.Value(0),
+      skierStart: new Animated.ValueXY({ x: 50, y: -310 }),
+      skierMove: () => {
+        Animated.loop(
+          Animated.timing(skierStart.getLayout() , {
+            toValue: {x: 200, y: -200},
+            duration: 3000,
+          }), {
+            iterations: 4
+          }
+        ).start()
+      },
     }
     this.handleIcons = this.handleIcons.bind(this);
     this.handleRunSelection = this.handleRunSelection.bind(this);
@@ -83,7 +95,7 @@ class App extends React.Component {
   }
   render() {
     const { mountainView } = this.state;
-    mountainView === 0 ? this.handleAnimation() : null;
+    mountainView === 0 ? this.handleAnimation() : this.handleAnimation();
     // All of the props shared amongst the conditional renders below
     const mountainViewProps = {
       handleIcons: this.handleIcons,
@@ -96,47 +108,60 @@ class App extends React.Component {
     }
     return (
       mountainView === 0 ?
-      <Animated.ScrollView style={{backgroundColor: 'black', color: '#fff', opacity: this.state.fadeAnim}}>
-        <Image
-          style={styles.nstar}
-          source={{uri: 'https://easkiandsnowboard.com/assets/Uploads/_resampled/PadWyIzMDAiLCIyMDAiLCJGRkZGRkYiLDBd/LOGO-Northstar-USA.jpg'}}
-        />
-        <Search
-          handleIcons={this.handleIcons}
-          mountainView={this.state.mountainView}
-          liftInfo={this.state.liftInfo}
-        />
-        <FilterRuns
-        />
-        <ImageBackground
-          style={styles.img}
-          source={NorthStar}
-        >
-        <LiftIcon
-          handleIcons={this.handleIcons}
-        />
-        </ImageBackground>
-        {/* <Tabs /> */}
-      </Animated.ScrollView>
+      <SkiContext.Provider value={[this.setState.skierStart, this.state.skierMove]}>
+        <Animated.ScrollView style={{backgroundColor: 'black', color: '#fff', opacity: this.state.fadeAnim}}>
+          <Image
+            style={styles.nstar}
+            source={{uri: 'https://easkiandsnowboard.com/assets/Uploads/_resampled/PadWyIzMDAiLCIyMDAiLCJGRkZGRkYiLDBd/LOGO-Northstar-USA.jpg'}}
+          />
+          <Search
+            handleIcons={this.handleIcons}
+            mountainView={this.state.mountainView}
+            liftInfo={this.state.liftInfo}
+          />
+          <FilterRuns
+          />
+          <ImageBackground
+            style={styles.img}
+            source={NorthStar}
+          >
+          <LiftIcon
+            handleIcons={this.handleIcons}
+          />
+          </ImageBackground>
+          {/* <Tabs /> */}
+        </Animated.ScrollView>
+      </SkiContext.Provider>
       : mountainView === 1 ?
-      <Lookout
-        {...mountainViewProps}
-      />
+      <SkiContext.Provider>
+        <Lookout
+          {...mountainViewProps}
+        />
+      </SkiContext.Provider>
       : mountainView === 2 || mountainView === 3 ?
-      <Backside
-        {...mountainViewProps}
-      />
+      <SkiContext.Provider>
+        <Backside
+          {...mountainViewProps}
+        />
+      </SkiContext.Provider>
       : mountainView === 4 || mountainView === 5 || mountainView === 6 || mountainView === 7 ?
-      <Gondola
-        {...mountainViewProps}
-      />
+      <SkiContext.Provider>
+        <Gondola
+          {...mountainViewProps}
+        />
+      </SkiContext.Provider>
       : mountainView === 8 || mountainView === 9 || mountainView === 10 || mountainView === 13 ?
-      <MidMountain
-        {...mountainViewProps}
-      /> :
-      <Summit
-        {...mountainViewProps}
-      />
+      <SkiContext.Provider>
+        <MidMountain
+          {...mountainViewProps}
+        />
+      </SkiContext.Provider>
+      :
+      <SkiContext.Provider>
+        <Summit
+          {...mountainViewProps}
+        />
+      </SkiContext.Provider>
     );
   }
 }
