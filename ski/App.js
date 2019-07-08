@@ -31,7 +31,7 @@ class App extends React.Component {
   componentDidMount() {
     this.getRuns();
     this.getLifts();
-    this.handleGetWeatherData();
+    // this.handleGetWeatherData();
   }
   // Handler so that display is recent on home button click
   handleBaseState() {
@@ -80,13 +80,10 @@ class App extends React.Component {
     }, () => console.log(this.state.mountainView))
   }
   handleAnimation() {
-    Animated.timing(                  // Animate over time
-      this.state.fadeAnim,            // The animated value to drive
-      {
-        toValue: 1,                   // Animate to opacity: 1 (opaque)
-        duration: 2000,              // Make it take a while
-      }
-    ).start();
+    Animated.timing(this.state.fadeAnim, {
+        toValue: 1,
+        duration: 1000,
+      }, this.state.fadeAnim.setValue(0)).start();
   }
   render() {
     const { mountainView } = this.state;
