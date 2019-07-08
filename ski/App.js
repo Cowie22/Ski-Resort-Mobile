@@ -4,14 +4,11 @@ import axios from 'axios';
 import NorthStar from './images/xlarge.jpg';
 // import { Tabs } from './src/router';
 import LiftIcon from './src/components/Icons/LiftIcon';
-import Lookout from './src/components/MapViews/Lookout';
-import Backside from './src/components/MapViews/Backside';
-import Gondola from './src/components/MapViews/Gondola';
-import MidMountain from './src/components/MapViews/MidMountain';
-import Summit from './src/components/MapViews/Summit';
+import MountPluto from './src/components/MapViews/MountPulto';
 import Search from './src/components/SearchBar/Search';
 import FilterRuns from './src/components/SearchBar/FilterRuns';
 import Weather from './src/components/Weather/Weather';
+import snowFall from './images/gifs/SnowFall.gif';
 
 class App extends React.Component {
   constructor(props) {
@@ -69,9 +66,12 @@ class App extends React.Component {
     })
   }
   handleGetWeatherData() {
-    axios.get(`https://www.metaweather.com/api/location/23511744/`)
+    axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=39.2746&lon=-120.1211&APPID=cecb63c29bf8faa4dc6c39fe1c560182`)
       .then(res => {
         console.log('weather', res.data)
+      })
+      .catch(err =>{
+        console.log('ERROR', err)
       })
   }
   // Handles the icons clicked, so that the proper Map View is displayed
@@ -101,11 +101,12 @@ class App extends React.Component {
     }
     return (
       mountainView === 0 ?
-        <Animated.ScrollView style={{backgroundColor: 'black', color: '#fff', opacity: this.state.fadeAnim}}>
+      <ImageBackground source={snowFall} style={[styles.container]}>
+        <Animated.ScrollView style={{color: '#fff', opacity: this.state.fadeAnim}}>
           <StatusBar barStyle="light-content" />
           <Image
             style={styles.nstar}
-            source={{uri: 'https://res-5.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1505722113/owvn5dbkxakklytxbwvd.png'}}
+            source={{uri:'https://res-5.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1505722113/owvn5dbkxakklytxbwvd.png'}}
           />
           <Search
             handleIcons={this.handleIcons}
@@ -125,24 +126,9 @@ class App extends React.Component {
           <Weather />
           {/* <Tabs /> */}
         </Animated.ScrollView>
-        : mountainView === 1 ?
-        <Lookout
-          {...mountainViewProps}
-        />
-        : mountainView === 2 || mountainView === 3 ?
-        <Backside
-          {...mountainViewProps}
-        />
-        : mountainView === 4 || mountainView === 5 || mountainView === 6 || mountainView === 7 ?
-        <Gondola
-          {...mountainViewProps}
-        />
-        : mountainView === 8 || mountainView === 9 || mountainView === 10 || mountainView === 13 ?
-        <MidMountain
-          {...mountainViewProps}
-        />
+        </ImageBackground>
         :
-        <Summit
+        <MountPluto
           {...mountainViewProps}
         />
     );

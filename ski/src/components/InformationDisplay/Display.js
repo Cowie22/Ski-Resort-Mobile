@@ -27,7 +27,7 @@ class Display extends React.Component {
   handleAnimation() {
     Animated.timing(this.state.displayStart, {
       toValue: {x: 0, y: 0},
-      duration: 3000,
+      duration: 700,
     }, this.state.displayStart.setValue({x: 0, y: 200})).start();
   }
   render() {
@@ -42,8 +42,8 @@ class Display extends React.Component {
     this.props.currentRunID > 0 ? this.handleAnimation() : null;
     return (
       this.props.currentRunID > 0 ?
-      <ImageBackground style={styles.container} source={snowGif}>
-        <Animated.View style={[this.state.displayStart.getLayout(), styles.animated]}>
+      // <View style={styles.container}>
+        <Animated.View style={[this.state.displayStart.getLayout(), styles.animated, styles.container]}>
           <Text style={[styles.text]}>{name}</Text>
           <Text
           style={terrain === 'Black Diamond: Most Difficult' ? [styles.text, styles.blackDiamond] :
@@ -59,11 +59,11 @@ class Display extends React.Component {
           <Text style={[styles.text]}>WAIT TIME: {wait_time}</Text>
           <Text style={[styles.text]}>{vertical_feet} Vertical Feet!</Text>
         </Animated.View>
-      </ImageBackground>
+      // </View>
       :
-      <ImageBackground style={styles.container} source={snowGif}>
+      <View>
 
-      </ImageBackground>
+      </View>
     );
   }
 }
@@ -77,7 +77,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     fontFamily: 'Georgia-Bold',
-    height: 180,
+    height: 160,
+    backgroundColor: 'rgba(255,255,255,0.4)',
+    borderRadius: 120,
   },
   animated: {
     flex: 1,

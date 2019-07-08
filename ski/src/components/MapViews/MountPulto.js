@@ -1,14 +1,19 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, ScrollView, Animated, StatusBar } from 'react-native';
+import {StyleSheet, Text, View, Image, ScrollView, Animated, StatusBar, ImageBackground } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BacksideImg from '../../../images/Backside.jpg';
+import GondolaImg from '../../../images/Gondola.jpg';
+import LookoutImg from '../../../images/Lookout.jpg';
+import MidMountainImg from '../../../images/MidMountain.jpg';
+import SummitImg from '../../../images/Summit.jpg';
 import RunSearch from '../SearchBar/RunSearch';
 import FilterRuns from '../SearchBar/FilterRuns';
 import Display from '../InformationDisplay/Display';
 import SkierDude from '../Icons/SkierDude';
+import snowFall from '../../../images/gifs/SnowFall.gif';
 
-class Backside extends React.Component {
+class MountPluto extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,11 +28,12 @@ class Backside extends React.Component {
   }
   render() {
     const { mountainView, handleIcons, handleBaseState } = this.props;
-    mountainView === 2 || mountainView === 3 ? this.handleAnimation() : null;
-    console.log(this.props.oneRunInfo)
+    // mountainView === 2 || mountainView === 3 ? this.handleAnimation() : null;
+    mountainView > 0 ? this.handleAnimation() : null;
     return (
+      <ImageBackground source={snowFall} style={{width: '100%', height: '100%'}}>
       <Animated.ScrollView minimumZoomScale={1} maximumZoomScale={5}
-      style={{backgroundColor: 'black', color: '#fff', opacity: this.state.fadeAnim}}>
+      style={{color: '#fff', opacity: this.state.fadeAnim}}>
       <StatusBar barStyle="light-content" />
        <Image
           style={styles.nstar}
@@ -44,7 +50,12 @@ class Backside extends React.Component {
         />
         <Image
           style={styles.img}
-          source={BacksideImg}
+          source={ mountainView === 1 ? LookoutImg :
+            mountainView === 2 || mountainView === 3 ? BacksideImg :
+            mountainView === 4 || mountainView === 5 || mountainView === 6 || mountainView === 7 ? GondolaImg :
+            mountainView === 8 || mountainView === 9 || mountainView === 10 || mountainView === 13 ? MidMountainImg :
+            SummitImg
+          }
         />
         <SkierDude
           currentRunID={this.props.currentRunID}
@@ -71,6 +82,7 @@ class Backside extends React.Component {
           TouchableOpacity={0.2}
         />
       </Animated.ScrollView>
+      </ImageBackground>
     );
   }
 }
@@ -93,7 +105,7 @@ const styles = StyleSheet.create({
   },
   img: {
     width: '100%',
-    height: 313,
+    height: 334,
     margin: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -104,4 +116,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Backside
+export default MountPluto
