@@ -23,15 +23,22 @@ class App extends React.Component {
       fadeAnim: new Animated.Value(0),
       temperature: 0,
       weatherCondition: null,
+      humidity: 0,
+      maxTemp: 0,
+      minTemp: 0,
+      windSpeed: 0,
+      loading: true,
     }
     this.handleIcons = this.handleIcons.bind(this);
     this.handleRunSelection = this.handleRunSelection.bind(this);
     this.handleBaseState = this.handleBaseState.bind(this);
   }
+  componentWillMount() {
+    this.handleGetWeatherData();
+  }
   componentDidMount() {
     this.getRuns();
     this.getLifts();
-    this.handleGetWeatherData();
   }
   // Handler so that display is recent on home button click
   handleBaseState() {
@@ -75,6 +82,11 @@ class App extends React.Component {
         this.setState({
           temperature: res.data.main.temp,
           weatherCondition: res.data.weather[0].main,
+          humidity: res.data.main.humidity,
+          maxTemp: res.data.main.temp_max,
+          minTemp: res.data.main.temp_min,
+          windSpeed: res.data.wind.speed,
+          loading: false,
         })
       })
       .catch(err =>{
@@ -133,6 +145,11 @@ class App extends React.Component {
           <Weather
             weatherCondition={this.state.weatherCondition}
             temperature={this.state.temperature}
+            loading={this.state.loading}
+            humidity={this.state.humidity}
+            maxTemp={this.state.maxTemp}
+            minTemp={this.state.minTemp}
+            windSpeed={this.state.windSpeed}
           />
           {/* <Tabs /> */}
         </Animated.ScrollView>

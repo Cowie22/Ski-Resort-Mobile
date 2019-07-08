@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, ScrollView, Image, ImageBackground } from 'react-native';
 import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class LiftIcon extends React.Component {
   constructor(props) {
@@ -14,14 +14,14 @@ class LiftIcon extends React.Component {
     // Icon shared amongst all of the chairlifts, seen in all button icons below
     const snowIcon =
       <Icon
-        name="snowflake-o"
+        name="gondola"
         size={22}
         color="#2D68C4"
       />;
       // Mini for small lift because it's too tight on the image
       const miniSnowIcon =
       <Icon
-        name="snowflake-o"
+        name="gondola"
         size={14}
         color="#2D68C4"
       />;

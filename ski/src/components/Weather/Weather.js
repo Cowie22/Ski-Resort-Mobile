@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { weatherType } from './WeatherConditions';
 
 class Weather extends React.Component {
   constructor(props) {
@@ -10,52 +11,79 @@ class Weather extends React.Component {
     }
   }
   render() {
-    const { temperature, weatherCondition } = this.props;
+    const { temperature, weatherCondition, loading, humidity, maxTemp, minTemp, windSpeed } = this.props;
+    console.log('current', weatherType)
+    console.log('props', weatherCondition)
     return (
-      <View style={styles.weatherContainer}>
+      loading === false ?
+      <View style={[styles.weatherContainer, {backgroundColor: weatherType[weatherCondition].color}]}>
         <View style={styles.headerContainer}>
-          <Icon size={48} name="sun-o" color={'#fff'} />
+          <Text style={styles.title}>{weatherType[weatherCondition].title}</Text>
+          <Icon size={48} name={weatherType[weatherCondition].icon} color={'#fff'} />
           <Text style={styles.tempText}>{temperature}˚F</Text>
         </View>
         <View style={styles.bodyContainer}>
-          <Text style={styles.title}>{weatherCondition}</Text>
-          <Text style={styles.subtitle}>It hurts my eyes!</Text>
+          <View style={styles.fieldContainer}>
+            <Text style={styles.subtitle}>High: {maxTemp}˚F</Text>
+            <Text style={styles.subtitle}>Humidity: {humidity} %</Text>
+          </View>
+          <View style={styles.fieldContainer}>
+            <Text style={styles.subtitle}>Low: {minTemp}˚F</Text>
+            <Text style={styles.subtitle}>Wind: {windSpeed} MPH</Text>
+          </View>
         </View>
+      </View>
+      :
+      <View>
+        <Text>Loading Weather Data</Text>
       </View>
     )
   }
 }
-//cecb63c29bf8faa4dc6c39fe1c560182
-//8ef1f55ff407708df4aeed5cb33dfadd
+
 const styles = StyleSheet.create({
   weatherContainer: {
     flex: 1,
-    backgroundColor: '#f7b733'
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 80,
+    marginRight: 8,
   },
   headerContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
   tempText: {
-    fontSize: 48,
-    color: '#fff'
+    fontSize: 28,
+    color: '#000',
+    fontWeight: 'bold',
   },
   bodyContainer: {
-    flex: 2,
-    alignItems: 'flex-start',
-    justifyContent: 'flex-end',
-    paddingLeft: 25,
-    marginBottom: 40
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginBottom: 22,
+  },
+  fieldContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexDirection: 'column',
   },
   title: {
-    fontSize: 48,
-    color: '#fff'
+    fontSize: 28,
+    color: '#000',
+    fontWeight: 'bold',
+    fontWeight: 'bold',
   },
   subtitle: {
-    fontSize: 24,
-    color: '#fff'
-  }
+    fontSize: 18,
+    color: '#000',
+    fontWeight: 'bold',
+  },
 });
 
 
