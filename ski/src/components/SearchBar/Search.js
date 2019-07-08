@@ -27,6 +27,8 @@ class Search extends React.Component {
         fontSize={20}
         labelFontSize={20}
         animationDuration={200}
+        labelTextStyle={{fontFamily: 'Verdana', fontWeight: 'bold', marginLeft: 20}}
+        itemTextStyle={{fontFamily: 'Verdana', fontWeight: 'bold', marginLeft: 20}}
         baseColor='rgb(125, 24, 24)'
         itemColor='rgb(125, 24, 24)'
         selectedItemColor='rgb(125, 24, 24)'
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   dropdown: {
-    marginTop: -20,
+    marginTop: -40,
   },
   dropList: {
     backgroundColor: 'black',

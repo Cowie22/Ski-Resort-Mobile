@@ -1,7 +1,6 @@
 import React from 'react';
-import { Animated, TouchableHighlight, Text, View, StyleSheet, Image } from 'react-native';
+import { Animated, View, StyleSheet } from 'react-native';
 import vonn from '../../../images/vonn.png';
-import SkiContext from '../../Context/SkiContext';
 
  class SkierDude extends React.Component {
   constructor(props) {

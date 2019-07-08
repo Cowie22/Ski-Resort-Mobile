@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, ScrollView, Animated } from 'react-native';
+import {StyleSheet, Text, View, Image, ScrollView, Animated, StatusBar } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BacksideImg from '../../../images/Backside.jpg';
@@ -31,9 +31,10 @@ class Backside extends React.Component {
     return (
       <Animated.ScrollView minimumZoomScale={1} maximumZoomScale={5}
       style={{backgroundColor: 'black', color: '#fff', opacity: this.state.fadeAnim}}>
+      <StatusBar barStyle="light-content" />
        <Image
           style={styles.nstar}
-          source={{uri: 'https://easkiandsnowboard.com/assets/Uploads/_resampled/PadWyIzMDAiLCIyMDAiLCJGRkZGRkYiLDBd/LOGO-Northstar-USA.jpg'}}
+          source={{uri: 'https://res-5.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1505722113/owvn5dbkxakklytxbwvd.png'}}
         />
         <RunSearch
           handleIcons={this.props.handleIcons}
@@ -85,9 +86,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   nstar: {
-    width: '100%',
-    height: 170,
-    margin: 1,
+    width: '90%',
+    height: 120,
+    marginTop: 28,
+    marginLeft: 20,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },

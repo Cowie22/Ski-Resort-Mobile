@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Image, ImageBackground, Animated } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Image, ImageBackground, Animated } from 'react-native';
 import axios from 'axios';
 import NorthStar from './images/xlarge.jpg';
 // import { Tabs } from './src/router';
@@ -11,7 +11,6 @@ import MidMountain from './src/components/MapViews/MidMountain';
 import Summit from './src/components/MapViews/Summit';
 import Search from './src/components/SearchBar/Search';
 import FilterRuns from './src/components/SearchBar/FilterRuns';
-import SkiContext from './src/Context/SkiContext';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,18 +23,6 @@ class App extends React.Component {
       mountainView: 0,
       currentRunID: 0,
       fadeAnim: new Animated.Value(0),
-      skierStart: new Animated.ValueXY({ x: 50, y: -310 }),
-      skierMove: (currentX, currentY) => {
-        Animated.loop(
-          Animated.timing(this.state.skierStart, {
-            toValue: {x: currentX, y: currentY},
-            duration: 3000,
-          }),
-          {
-            iterations: 4
-          }
-        ).start()
-      },
     }
     this.handleIcons = this.handleIcons.bind(this);
     this.handleRunSelection = this.handleRunSelection.bind(this);
@@ -44,6 +31,7 @@ class App extends React.Component {
   componentDidMount() {
     this.getRuns();
     this.getLifts();
+    this.handleGetWeatherData();
   }
   // Handler so that display is recent on home button click
   handleBaseState() {
@@ -79,6 +67,12 @@ class App extends React.Component {
       })
     })
   }
+  handleGetWeatherData() {
+    axios.get(`https://www.metaweather.com/api/location/23511744/`)
+      .then(res => {
+        console.log('weather', res.data)
+      })
+  }
   // Handles the icons clicked, so that the proper Map View is displayed
   handleIcons(event) {
     this.setState({
@@ -113,11 +107,11 @@ class App extends React.Component {
     }
     return (
       mountainView === 0 ?
-      <SkiContext.Provider value={skiContextValues}>
         <Animated.ScrollView style={{backgroundColor: 'black', color: '#fff', opacity: this.state.fadeAnim}}>
+          <StatusBar barStyle="light-content" />
           <Image
             style={styles.nstar}
-            source={{uri: 'https://easkiandsnowboard.com/assets/Uploads/_resampled/PadWyIzMDAiLCIyMDAiLCJGRkZGRkYiLDBd/LOGO-Northstar-USA.jpg'}}
+            source={{uri: 'https://res-5.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1505722113/owvn5dbkxakklytxbwvd.png'}}
           />
           <Search
             handleIcons={this.handleIcons}
@@ -136,37 +130,26 @@ class App extends React.Component {
           </ImageBackground>
           {/* <Tabs /> */}
         </Animated.ScrollView>
-      </SkiContext.Provider>
-      : mountainView === 1 ?
-      <SkiContext.Provider value={skiContextValues}>
+        : mountainView === 1 ?
         <Lookout
           {...mountainViewProps}
         />
-      </SkiContext.Provider>
-      : mountainView === 2 || mountainView === 3 ?
-      <SkiContext.Provider value={skiContextValues}>
+        : mountainView === 2 || mountainView === 3 ?
         <Backside
           {...mountainViewProps}
         />
-      </SkiContext.Provider>
-      : mountainView === 4 || mountainView === 5 || mountainView === 6 || mountainView === 7 ?
-      <SkiContext.Provider value={skiContextValues}>
+        : mountainView === 4 || mountainView === 5 || mountainView === 6 || mountainView === 7 ?
         <Gondola
           {...mountainViewProps}
         />
-      </SkiContext.Provider>
-      : mountainView === 8 || mountainView === 9 || mountainView === 10 || mountainView === 13 ?
-      <SkiContext.Provider value={skiContextValues}>
+        : mountainView === 8 || mountainView === 9 || mountainView === 10 || mountainView === 13 ?
         <MidMountain
           {...mountainViewProps}
         />
-      </SkiContext.Provider>
-      :
-      <SkiContext.Provider value={skiContextValues}>
+        :
         <Summit
           {...mountainViewProps}
         />
-      </SkiContext.Provider>
     );
   }
 }
@@ -185,9 +168,11 @@ const styles = StyleSheet.create({
     color: "#1E90FF",
   },
   nstar: {
-    width: '100%',
-    height: 170,
-    margin: 1,
+    width: '90%',
+    height: 120,
+    marginTop: 28,
+    marginLeft: 20,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },

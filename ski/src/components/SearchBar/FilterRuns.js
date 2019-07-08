@@ -54,7 +54,7 @@ class FilterRuns extends React.Component {
         value={this.state.filterText}
         editable={true}
         placeholder="Search Runs"
-        placeholderTextColor={'rgba(255,255,255,0.4)'}
+        placeholderTextColor={'rgba(255,255,255,0.3)'}
         />
       </KeyboardAvoidingView>
     );
@@ -69,12 +69,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   field: {
-    height: 40,
-    width: '100%',
-    fontSize: 22,
+    height: 24,
+    width: '90%',
+    fontSize: 18,
     borderColor: 'gray',
+    backgroundColor: 'rgba(172, 173, 181,0.4)',
+    borderRadius: 10,
     borderWidth: 1,
     color: 'white',
+    textAlign: 'center',
   },
 });
 

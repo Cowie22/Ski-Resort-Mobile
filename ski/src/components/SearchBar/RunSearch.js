@@ -56,6 +56,8 @@ class RunSearch extends React.Component {
         textColor='rgb(125, 24, 24)'
         shadeOpacity={0.12}
         rippleOpacity={0.52}
+        labelTextStyle={{fontFamily: 'Verdana', fontWeight: 'bold', marginLeft: 20}}
+        itemTextStyle={{fontFamily: 'Verdana', fontWeight: 'bold', marginLeft: 20}}
         containerStyle={styles.dropdown}
         pickerStyle={styles.dropList}
         onChangeText={(value, index, data) => {
@@ -81,7 +83,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   dropdown: {
-    marginTop: -20,
+    marginTop: -40,
   },
   dropList: {
     backgroundColor: 'black',
