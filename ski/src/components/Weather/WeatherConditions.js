@@ -27,7 +27,7 @@ export const weatherConditions = {
     color: '#00d2ff',
     title: 'Snow',
     subtitle: 'Get out and build a snowman for me',
-    icon: 'weather-snowy'
+    icon: 'snowflake-o'
   },
   Drizzle: {
     color: '#076585',

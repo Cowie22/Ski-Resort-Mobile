@@ -10,14 +10,15 @@ class Weather extends React.Component {
     }
   }
   render() {
+    const { temperature, weatherCondition } = this.props;
     return (
       <View style={styles.weatherContainer}>
         <View style={styles.headerContainer}>
           <Icon size={48} name="sun-o" color={'#fff'} />
-          <Text style={styles.tempText}>Temperature˚</Text>
+          <Text style={styles.tempText}>{temperature}˚F</Text>
         </View>
         <View style={styles.bodyContainer}>
-          <Text style={styles.title}>So Sunny</Text>
+          <Text style={styles.title}>{weatherCondition}</Text>
           <Text style={styles.subtitle}>It hurts my eyes!</Text>
         </View>
       </View>

@@ -21,6 +21,8 @@ class App extends React.Component {
       mountainView: 0,
       currentRunID: 0,
       fadeAnim: new Animated.Value(0),
+      temperature: 0,
+      weatherCondition: null,
     }
     this.handleIcons = this.handleIcons.bind(this);
     this.handleRunSelection = this.handleRunSelection.bind(this);
@@ -29,7 +31,7 @@ class App extends React.Component {
   componentDidMount() {
     this.getRuns();
     this.getLifts();
-    // this.handleGetWeatherData();
+    this.handleGetWeatherData();
   }
   // Handler so that display is recent on home button click
   handleBaseState() {
@@ -66,9 +68,14 @@ class App extends React.Component {
     })
   }
   handleGetWeatherData() {
-    axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=39.2746&lon=-120.1211&APPID=cecb63c29bf8faa4dc6c39fe1c560182`)
+    axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=39.2746&lon=-120.1211&APPID=cecb63c29bf8faa4dc6c39fe1c560182&units=imperial`)
       .then(res => {
-        console.log('weather', res.data)
+        console.log('weather', res.data);
+        console.log(res.data.main.temp)
+        this.setState({
+          temperature: res.data.main.temp,
+          weatherCondition: res.data.weather[0].main,
+        })
       })
       .catch(err =>{
         console.log('ERROR', err)
@@ -123,7 +130,10 @@ class App extends React.Component {
             handleIcons={this.handleIcons}
           />
           </ImageBackground>
-          <Weather />
+          <Weather
+            weatherCondition={this.state.weatherCondition}
+            temperature={this.state.temperature}
+          />
           {/* <Tabs /> */}
         </Animated.ScrollView>
         </ImageBackground>
