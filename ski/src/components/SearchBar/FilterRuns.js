@@ -13,27 +13,16 @@ class FilterRuns extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this);
   }
-  componentWillMount () {
-    this.keyboardWillShowSub = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
-    this.keyboardWillHideSub = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
-  }
-
-  componentWillUnmount() {
-    this.keyboardWillShowSub.remove();
-    this.keyboardWillHideSub.remove();
-  }
-
-  keyboardWillShow = (event) => {
+  keyboardWillShow() {
     Animated.timing(this.state.imageHeight, {
-      duration: event.duration,
       toValue: 200,
+      duration: duration,
     }).start();
   };
-
-  keyboardWillHide = (event) => {
+  keyboardWillHide() {
     Animated.timing(this.state.imageHeight, {
-      duration: event.duration,
       toValue: 200,
+      duration: duration,
     }).start();
   };
   handleChange(event) {
@@ -44,10 +33,7 @@ class FilterRuns extends React.Component {
   }
   render() {
     return (
-      <KeyboardAvoidingView
-      style={styles.container}
-      behavior="padding"
-      >
+      <View style={styles.container}>
         <TextInput
         style={styles.field}
         onChangeText={this.handleChange}
@@ -56,7 +42,7 @@ class FilterRuns extends React.Component {
         placeholder="Search Runs"
         placeholderTextColor={'rgba(255,255,255,0.3)'}
         />
-      </KeyboardAvoidingView>
+      </View>
     );
   }
 }

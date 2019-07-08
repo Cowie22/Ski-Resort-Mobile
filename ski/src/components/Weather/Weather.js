@@ -1,8 +1,8 @@
 import React from 'react';
-import {StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-
-class Display extends React.Component {
+class Weather extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,72 +10,52 @@ class Display extends React.Component {
     }
   }
   render() {
-    const { name, groomed, wait_time, vertical_feet, terrain, status, is_favorite, to_complete, id } = this.props.oneRunInfo;
-    const blackDiamondIcon =
-    <Icon
-      name="diamond"
-      size={18}
-      color="white"
-      backgroundColor="black"
-    />
     return (
-      this.props.currentRunID > 0 ?
-      <ImageBackground style={styles.container} source={gifArray[Math.floor(Math.random() * gifArray.length)]}>
-        <Text style={[styles.text]}>{name}</Text>
-        <Text
-        style={terrain === 'Black Diamond: Most Difficult' ? [styles.text, styles.blackDiamond] :
-        terrain === 'Blue Square: More Difficult' ? [styles.text, styles.blueSquare] :
-        terrain === 'Green Circle: Easiest Way Down' ? [styles.text, styles.greenCircle] :
-        [styles.text, styles.terrainPark]}>{terrain}
-        </Text>
-        <Text style={groomed === 1 ? [styles.text, styles.goodToGo] :
-        [styles.text, styles.moreDangerous]}>{groomed === 1 ? 'Groomed' : 'Not Groomed'}
-        </Text>
-        <Text style={status === 1 ? [styles.text, styles.goodToGo] :
-        [styles.text, styles.moreDangerous]}>{status === 1 ? 'OPEN' : 'CLOSED'}</Text>
-        <Text style={[styles.text]}>WAIT TIME: {wait_time}</Text>
-        <Text style={[styles.text]}>{vertical_feet} Vertical Feet!</Text>
-      </ImageBackground>
-      :
-      null
-    );
+      <View style={styles.weatherContainer}>
+        <View style={styles.headerContainer}>
+          <Icon size={48} name="sun-o" color={'#fff'} />
+          <Text style={styles.tempText}>Temperature˚</Text>
+        </View>
+        <View style={styles.bodyContainer}>
+          <Text style={styles.title}>So Sunny</Text>
+          <Text style={styles.subtitle}>It hurts my eyes!</Text>
+        </View>
+      </View>
+    )
   }
 }
-
+//cecb63c29bf8faa4dc6c39fe1c560182
+//8ef1f55ff407708df4aeed5cb33dfadd
 const styles = StyleSheet.create({
-  container: {
+  weatherContainer: {
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: '#f7b733'
+  },
+  headerContainer: {
+    flex: 1,
     alignItems: 'center',
-    color: '#0062ff',
-    fontSize: 18,
-    fontWeight: 'bold',
-    fontFamily: 'Georgia-Bold',
+    justifyContent: 'center'
   },
-  text: {
-    color: '#0062ff',
-    fontSize: 18,
-    fontWeight: 'bold',
-    fontFamily: 'Georgia-Bold'
+  tempText: {
+    fontSize: 48,
+    color: '#fff'
   },
-  blackDiamond: {
-    color: '#000000',
+  bodyContainer: {
+    flex: 2,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-end',
+    paddingLeft: 25,
+    marginBottom: 40
   },
-  blueSquare: {
-    color: '#0062ff',
+  title: {
+    fontSize: 48,
+    color: '#fff'
   },
-  greenCircle: {
-    color: '#008702',
-  },
-  terrainPark: {
-    color: '#ff6200',
-  },
-  goodToGo: {
-    color: '#008702',
-  },
-  moreDangerous: {
-    color: 'rgb(125, 24, 24)',
-  },
+  subtitle: {
+    fontSize: 24,
+    color: '#fff'
+  }
 });
 
-export default Display
+
+export default Weather

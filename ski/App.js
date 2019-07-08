@@ -11,6 +11,7 @@ import MidMountain from './src/components/MapViews/MidMountain';
 import Summit from './src/components/MapViews/Summit';
 import Search from './src/components/SearchBar/Search';
 import FilterRuns from './src/components/SearchBar/FilterRuns';
+import Weather from './src/components/Weather/Weather';
 
 class App extends React.Component {
   constructor(props) {
@@ -98,10 +99,6 @@ class App extends React.Component {
       handleBaseState: this.handleBaseState,
       currentRunID: this.state.currentRunID,
     }
-    const skiContextValues = {
-      skierStart: this.state.skierStart,
-      skierMove: this.state.skierMove
-    }
     return (
       mountainView === 0 ?
         <Animated.ScrollView style={{backgroundColor: 'black', color: '#fff', opacity: this.state.fadeAnim}}>
@@ -125,6 +122,7 @@ class App extends React.Component {
             handleIcons={this.handleIcons}
           />
           </ImageBackground>
+          <Weather />
           {/* <Tabs /> */}
         </Animated.ScrollView>
         : mountainView === 1 ?
