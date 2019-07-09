@@ -86,6 +86,7 @@ class App extends React.Component {
           maxTemp: res.data.main.temp_max,
           minTemp: res.data.main.temp_min,
           windSpeed: res.data.wind.speed,
+          loading: false,
         })
       })
       .catch(err =>{
@@ -101,7 +102,6 @@ class App extends React.Component {
         }
         this.setState({
           forecastData: forecastArray,
-          loading: false,
         })
       })
   }
@@ -131,7 +131,7 @@ class App extends React.Component {
       currentRunID: this.state.currentRunID,
     }
     return (
-      mountainView === 0 ?
+      mountainView === 0 && this.state.forecastData.length > 0 ?
       <ImageBackground source={snowFall} style={[styles.container]}>
         <Animated.ScrollView style={{color: '#fff', opacity: this.state.fadeAnim}}>
           <StatusBar barStyle="light-content" />
@@ -171,10 +171,14 @@ class App extends React.Component {
           {/* <Tabs /> */}
         </Animated.ScrollView>
         </ImageBackground>
-        :
+        : mountainView > 0 && this.state.forecastData.length > 0 ?
         <MountPluto
           {...mountainViewProps}
         />
+        :
+        <View>
+          <Text>LOADING WEATHER DATA</Text>
+        </View>
     );
   }
 }

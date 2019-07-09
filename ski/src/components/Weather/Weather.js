@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Animated } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { weatherType } from './WeatherConditions';
 import { Button } from 'react-native-elements';
@@ -10,9 +10,13 @@ class Weather extends React.Component {
     super(props);
     this.state = {
       forecastView: false,
+      weatherDisplayAnim: new Animated.ValueXY({x: -300, y: 0}),
+      forecastDisplayAnim: new Animated.ValueXY({x: 300, y: 0}),
     }
     this.handleForecastView = this.handleForecastView.bind(this);
     this.handleDailyWeatherView = this.handleDailyWeatherView.bind(this);
+    this.handleWeatherSlide = this.handleWeatherSlide.bind(this);
+    this.handleForecastSlide = this.handleForecastSlide.bind(this)
   }
   handleForecastView() {
     this.setState({
@@ -23,6 +27,18 @@ class Weather extends React.Component {
     this.setState({
       forecastView: false,
     })
+  }
+  handleWeatherSlide() {
+    Animated.timing(this.state.weatherDisplayAnim, {
+      toValue: {x: 0, y: 0},
+      duration: 700,
+    }, this.state.weatherDisplayAnim.setValue({x: -300, y: 0})).start();
+  }
+  handleForecastSlide() {
+    Animated.timing(this.state.forecastDisplayAnim, {
+      toValue: {x: 0, y: 0},
+      duration: 700,
+    }, this.state.forecastDisplayAnim.setValue({x: 300, y: 0})).start();
   }
   render() {
     const {
@@ -36,10 +52,12 @@ class Weather extends React.Component {
       forecastData,
     } = this.props;
     const weatherIcon = <Icon name='weather-lightning-rainy' size={28} color={'#000000'} />
+    loading === false && this.state.forecastView === false ? this.handleWeatherSlide() :
+    this.state.forecastView === true ? this.handleForecastSlide() : null
     return (
       loading === false && this.state.forecastView === false ?
       <View>
-        <View style={[styles.weatherContainer, {backgroundColor: weatherType[weatherCondition].color}]}>
+        <Animated.View style={[this.state.weatherDisplayAnim.getLayout(), styles.weatherContainer, {backgroundColor: weatherType[weatherCondition].color}]}>
           <View style={styles.headerContainer}>
             <Text style={styles.title}>{weatherType[weatherCondition].title}</Text>
             <Icon size={48} name={weatherType[weatherCondition].icon} color={'#fff'} />
@@ -55,7 +73,7 @@ class Weather extends React.Component {
               <Text style={styles.subtitle}><Text style={{color: 'white'}}>Wind:</Text> {windSpeed} MPH</Text>
             </View>
           </View>
-        </View>
+        </Animated.View>
         <View style={styles.btnContainer}>
             <Button
             buttonStyle={styles.btn}
@@ -75,10 +93,12 @@ class Weather extends React.Component {
       </View>
       : this.state.forecastView === true ?
       <View>
-        <Forecast
-          forecastData={forecastData}
-          loading={loading}
-        />
+        <Animated.View style={[this.state.forecastDisplayAnim.getLayout()]}>
+          <Forecast
+            forecastData={forecastData}
+            loading={loading}
+          />
+        </Animated.View>
         <View style={styles.btnContainer}>
             <Button
             buttonStyle={styles.btn}
