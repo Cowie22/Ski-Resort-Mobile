@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { weatherType } from './WeatherConditions';
 
 class Weather extends React.Component {
@@ -11,9 +11,16 @@ class Weather extends React.Component {
     }
   }
   render() {
-    const { temperature, weatherCondition, loading, humidity, maxTemp, minTemp, windSpeed } = this.props;
+    const { temperature, weatherCondition, loading, humidity, maxTemp, minTemp, windSpeed, forecastData } = this.props;
     console.log('current', weatherType)
     console.log('props', weatherCondition)
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    let calculatedDays = [];
+    forecastData.map((day, i) => {
+      let index = Math.floor((day.dt / 86400) + 4) % 7
+      calculatedDays.push(daysOfWeek[index])
+    })
+    console.log('days', calculatedDays)
     return (
       loading === false ?
       <View style={[styles.weatherContainer, {backgroundColor: weatherType[weatherCondition].color}]}>
