@@ -24,12 +24,12 @@ class Weather extends React.Component {
         </View>
         <View style={styles.bodyContainer}>
           <View style={styles.fieldContainer}>
-            <Text style={styles.subtitle}>High: {maxTemp}˚F</Text>
-            <Text style={styles.subtitle}>Humidity: {humidity} %</Text>
+            <Text style={styles.subtitle}><Text style={{color: 'white'}}>High:</Text> {maxTemp}˚F</Text>
+            <Text style={styles.subtitle}><Text style={{color: 'white'}}>Humidity:</Text> {humidity} %</Text>
           </View>
           <View style={styles.fieldContainer}>
-            <Text style={styles.subtitle}>Low: {minTemp}˚F</Text>
-            <Text style={styles.subtitle}>Wind: {windSpeed} MPH</Text>
+            <Text style={styles.subtitle}><Text style={{color: 'white'}}>Low:</Text> {minTemp}˚F</Text>
+            <Text style={styles.subtitle}><Text style={{color: 'white'}}>Wind:</Text> {windSpeed} MPH</Text>
           </View>
         </View>
       </View>
