@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, ImageBackground, Animated } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon2 from 'react-native-vector-icons/FontAwesome5';
 
 class Display extends React.Component {
   constructor(props) {
@@ -18,31 +19,42 @@ class Display extends React.Component {
   }
   render() {
     const { name, groomed, wait_time, vertical_feet, terrain, status, is_favorite, to_complete, id } = this.props.oneRunInfo;
-    const blackDiamondIcon =
-    <Icon
-      name="diamond"
-      size={18}
-      color="white"
-      backgroundColor="black"
-    />
+
+    const terrainIcon = terrain === 'Black Diamond: Most Difficult' ?
+    <Icon name="cards-diamond" size={28} color="#000000" /> :
+    terrain === 'Blue Square: More Difficult' ?
+    <Icon name="square" size={28} color="#003b99" /> :
+    terrain === 'Green Circle: Easiest Way Down' ?
+    <Icon name="checkbox-blank-circle" size={28} color="#008702" /> :
+    <Icon2 name="snowboarding" size={28} color="#ff6200" />
+
+    const groomerIcon = <Icon2 name="snowplow" size={20} color={groomed === 1 ? "#008702" : "rgb(125, 24, 24)"} />
+
+    const statusIcon = status === 1 ? <Icon2 name="thumbs-up" size={20} color="#008702" /> :
+    <Icon2 name="thumbs-down" size={20} color="rgb(125, 24, 24)" />
+
+    const clockIcon = <Icon name="clock" size={20} color="#000000" />
+
+    const mountainIcon = <Icon2 name="mountain" size={20} color="#000000" />
+
     this.props.currentRunID > 0 ? this.handleAnimation() : null;
     return (
       this.props.currentRunID > 0 ?
       <Animated.View style={[this.state.displayStart.getLayout(), styles.animated, styles.container]}>
-        <Text style={[styles.text]}>{name}</Text>
+        <Text style={[styles.title]}>{name}</Text>
         <Text
         style={terrain === 'Black Diamond: Most Difficult' ? [styles.text, styles.blackDiamond] :
         terrain === 'Blue Square: More Difficult' ? [styles.text, styles.blueSquare] :
         terrain === 'Green Circle: Easiest Way Down' ? [styles.text, styles.greenCircle] :
-        [styles.text, styles.terrainPark]}>{terrain}
+        [styles.text, styles.terrainPark]}>{terrainIcon}{terrain}
         </Text>
         <Text style={groomed === 1 ? [styles.text, styles.goodToGo] :
-        [styles.text, styles.moreDangerous]}>{groomed === 1 ? 'Groomed' : 'Not Groomed'}
+        [styles.text, styles.moreDangerous]}>{groomerIcon}{'  '}{groomed === 1 ? 'Groomed' : 'Not Groomed'}
         </Text>
         <Text style={status === 1 ? [styles.text, styles.goodToGo] :
-        [styles.text, styles.moreDangerous]}>{status === 1 ? 'OPEN' : 'CLOSED'}</Text>
-        <Text style={[styles.text]}>WAIT TIME: {wait_time}</Text>
-        <Text style={[styles.text]}>{vertical_feet} Vertical Feet!</Text>
+        [styles.text, styles.moreDangerous]}>{statusIcon}{'  '}{status === 1 ? 'OPEN' : 'CLOSED'}</Text>
+        <Text style={[styles.text]}>{clockIcon} WAIT TIME: {wait_time}</Text>
+        <Text style={[styles.text]}>{mountainIcon}{'  '}{vertical_feet} Vertical Feet!</Text>
       </Animated.View>
       :
       <View>
@@ -70,6 +82,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  title: {
+    color: 'rgb(125, 24, 24)',
+    fontSize: 22,
+    fontWeight: 'bold',
+    fontFamily: 'Georgia-Bold',
+    textDecorationLine: 'underline',
+    textDecorationColor: '#ffb300',
+  },
   text: {
     color: '#000000',
     fontSize: 18,
@@ -80,7 +100,7 @@ const styles = StyleSheet.create({
     color: '#000000',
   },
   blueSquare: {
-    color: '#0062ff',
+    color: '#003b99',
   },
   greenCircle: {
     color: '#008702',
