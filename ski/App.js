@@ -9,8 +9,6 @@ import Search from './src/components/SearchBar/Search';
 import FilterRuns from './src/components/SearchBar/FilterRuns';
 import Weather from './src/components/Weather/Weather';
 import snowFall from './images/gifs/SnowFall.gif';
-import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class App extends React.Component {
   constructor(props) {
@@ -37,12 +35,12 @@ class App extends React.Component {
     this.handleBaseState = this.handleBaseState.bind(this);
   }
   componentWillMount() {
+    this.handleGetForecastData();
     this.handleGetWeatherData();
   }
   componentDidMount() {
     this.getRuns();
     this.getLifts();
-    this.handleGetForecastData();
   }
   // Handler so that display is recent on home button click
   handleBaseState() {
@@ -81,7 +79,6 @@ class App extends React.Component {
   handleGetWeatherData() {
     axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=39.2746&lon=-120.1211&APPID=cecb63c29bf8faa4dc6c39fe1c560182&units=imperial`)
       .then(res => {
-        console.log('weather', res.data);
         this.setState({
           temperature: res.data.main.temp,
           weatherCondition: res.data.weather[0].main,
@@ -89,7 +86,6 @@ class App extends React.Component {
           maxTemp: res.data.main.temp_max,
           minTemp: res.data.main.temp_min,
           windSpeed: res.data.wind.speed,
-          loading: false,
         })
       })
       .catch(err =>{
@@ -100,12 +96,12 @@ class App extends React.Component {
     axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=39.2746&lon=-120.1211&APPID=cecb63c29bf8faa4dc6c39fe1c560182&units=imperial`)
       .then(res => {
         let forecastArray = [];
-        console.log('forecast', res.data);
         for (let i = 3; i < 40; i += 8) {
           forecastArray.push(res.data.list[i])
         }
         this.setState({
           forecastData: forecastArray,
+          loading: false,
         })
       })
   }
@@ -123,7 +119,7 @@ class App extends React.Component {
   }
   render() {
     const { mountainView } = this.state;
-    mountainView === 0 ? this.handleAnimation() : this.handleAnimation();
+    mountainView === 0 ? this.handleAnimation() : null;
     // All of the props shared amongst the conditional renders below
     const mountainViewProps = {
       handleIcons: this.handleIcons,
@@ -134,9 +130,6 @@ class App extends React.Component {
       handleBaseState: this.handleBaseState,
       currentRunID: this.state.currentRunID,
     }
-
-    const weatherIcon = <Icon name='weather-lightning-rainy' size={28} color={'#000000'} />
-    console.log('gathered forecast', this.state.forecastData)
     return (
       mountainView === 0 ?
       <ImageBackground source={snowFall} style={[styles.container]}>
@@ -161,6 +154,7 @@ class App extends React.Component {
             handleIcons={this.handleIcons}
           />
           </ImageBackground>
+          {this.state.loading === false ?
           <Weather
             weatherCondition={this.state.weatherCondition}
             temperature={this.state.temperature}
@@ -170,21 +164,10 @@ class App extends React.Component {
             minTemp={this.state.minTemp}
             windSpeed={this.state.windSpeed}
             forecastData={this.state.forecastData}
+            forecastView={this.state.forecastView}
           />
-          <View style={styles.btnContainer}>
-            <Button
-            buttonStyle={styles.btn}
-            title="Current"
-            icon={weatherIcon}
-            titleStyle={styles.btnTitle}
-            />
-            <Button
-            buttonStyle={styles.btn}
-            title="Forecast"
-            icon={weatherIcon}
-            titleStyle={styles.btnTitle}
-            />
-          </View>
+          : null
+          }
           {/* <Tabs /> */}
         </Animated.ScrollView>
         </ImageBackground>
@@ -228,23 +211,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  btnContainer: {
-    flex: 1,
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    flexDirection: 'row',
-    marginTop: 4,
-  },
-  btn: {
-    backgroundColor: 'rgba(255,255,255, 0.4)',
-    borderRadius: 20,
-  },
-  btnTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    fontFamily: 'Georgia-Bold',
-    letterSpacing: 1,
-  }
 });
 
 
