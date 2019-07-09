@@ -18,7 +18,6 @@ class App extends React.Component {
       liftInfo: [],
       oneRunInfo: [],
       forecastData: [],
-      show: false,
       mountainView: 0,
       currentRunID: 0,
       fadeAnim: new Animated.Value(0),
@@ -95,10 +94,12 @@ class App extends React.Component {
   }
   handleGetForecastData() {
     axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=39.2746&lon=-120.1211&APPID=cecb63c29bf8faa4dc6c39fe1c560182&units=imperial`)
-      .then(res => {
-        let forecastArray = [];
-        for (let i = 3; i < 40; i += 8) {
-          forecastArray.push(res.data.list[i])
+    .then(res => {
+      let forecastArray = [];
+        for (let i = 0; i < 40; i++) {
+          if (res.data.list[i].dt_txt.includes('18:00:00')) {
+            forecastArray.push(res.data.list[i])
+          }
         }
         this.setState({
           forecastData: forecastArray,
