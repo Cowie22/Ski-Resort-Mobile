@@ -202,7 +202,7 @@ INSERT into places (name, description, open_time, close_time) VALUES ("Comstock 
 INSERT into places (name, description, open_time, close_time) VALUES ("Backside Lodge", "Restaurants, Bathrooms, Lockers, Bars, Shops, Customer Services", '08:00:00', '04:30:00');
 INSERT into places (name, description, open_time, close_time) VALUES ("Lookout Tables", "Picknick Tables", '08:00:00', '04:30:00');
 INSERT into places (name, description, open_time, close_time) VALUES ("Logers Loop Tables", "Picknick Tables", '08:00:00', '04:30:00');
-INSERT into places (name, description, open_time, close_time) VALUES ("Village", "Everything", '08:00:00', '11:00:00');
+INSERT into places (name, description, open_time, close_time) VALUES ("Village", "Everything, but the kitchen sink", '08:00:00', '11:00:00');
 INSERT into places (name, description, open_time, close_time) VALUES ("Lookout Road Tables", "Picknick Tables", '08:00:00', '04:30:00');
 INSERT into places (name, description, open_time, close_time) VALUES ("TŌST", "A few friends, an epic view and a bit of bubbly: Free Daily at 2P.M.  Also open for reservations", '08:00:00', '04:30:00');
 

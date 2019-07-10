@@ -48,6 +48,7 @@ class App extends React.Component {
   handleBaseState() {
     this.setState({
       currentRunID: 0,
+      currentPlaceID: 0,
     })
   }
   // Gets run data from the database, called in componentDidMount
