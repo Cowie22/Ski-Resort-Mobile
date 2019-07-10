@@ -42,9 +42,23 @@ class RunSearch extends React.Component {
     mountainView === 12 ? data = getLiftRuns(runInfo, 12) :
     mountainView === 13 ? data = getLiftRuns(runInfo, 13) :
     null
+    mountainView === 1 ? liftName = 'Lookout Express' :
+    mountainView === 2 ? liftName = 'Promised Land Express' :
+    mountainView === 3 ? liftName = 'Backside Express' :
+    mountainView === 4 ? liftName = 'Timberline' :
+    mountainView === 5 ? liftName = 'Highlands Gondola' :
+    mountainView === 6 ? liftName = 'Big Springs Gondola Express' :
+    mountainView === 7 ? liftName = 'Village Express' :
+    mountainView === 8 ? liftName = 'Tahoe Zephyr Express' :
+    mountainView === 9 ? liftName = 'Arrow Express' :
+    mountainView === 10 ? liftName = 'Vista Express' :
+    mountainView === 11 ? liftName = 'Rendezvous Express' :
+    mountainView === 12 ? liftName = 'Comstock Express' :
+    mountainView === 13 ? liftName = 'The Big Easy' :
+    null
     return (
       <Dropdown
-        label='RUNS'
+        label={`${liftName} Runs`}
         data={data}
         labelPadding={400}
         fontSize={20}

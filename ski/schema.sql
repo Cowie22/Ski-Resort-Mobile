@@ -95,14 +95,14 @@ INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vert
 
 -- Timberline Runs
 
-INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("Overland Trail", "Blue Square: More Difficult", 1, 0, 0, 1, 570, '20 Minutes', 200, 200, 100, 100, 4);
-INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("Timber Line", "Blue Square: More Difficult", 1, 0, 0, 1, 570, '20 Minutes', 200, 200, 100, 100, 4);
-INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("Gateway", "Blue Square: More Difficult", 1, 0, 0, 0, 570, '20 Minutes', 200, 200, 100, 100, 4);
-INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("The Glades", "Blue Square: More Difficult", 1, 0, 0, 1, 570, '20 Minutes', 200, 200, 100, 100, 4);
+INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("Overland Trail", "Blue Square: More Difficult", 1, 0, 0, 1, 570, '20 Minutes', 345, -307, 270, -295, 4);
+INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("Timber Line", "Blue Square: More Difficult", 1, 0, 0, 1, 570, '20 Minutes', 276, -290, 287, -193, 4);
+INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("Gateway", "Blue Square: More Difficult", 1, 0, 0, 0, 570, '20 Minutes', 293, -193, 304, -129, 4);
+INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("The Glades", "Blue Square: More Difficult", 1, 0, 0, 1, 570, '20 Minutes', 251, -226, 260, -163, 4);
 
 -- Highlands Gondola
 
-INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("Coyote Fork", "Blue Square: More Difficult", 1, 0, 0, 1, 600, '20 Minutes', 200, 200, 100, 100, 5);
+INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("Coyote Fork", "Blue Square: More Difficult", 1, 0, 0, 1, 600, '20 Minutes', 167, -228, 125, -168, 5);
 
 -- Big Springs Gondola Express
 
