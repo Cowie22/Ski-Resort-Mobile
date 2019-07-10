@@ -81,6 +81,7 @@ class App extends React.Component {
       this.setState({
         oneRunInfo: res.data[0],
         currentRunID: id,
+        currentPlaceID: 0,
       })
     })
     .catch(err =>{
@@ -94,6 +95,7 @@ class App extends React.Component {
       this.setState({
         onePlaceInfo: res.data[0],
         currentPlaceID: id,
+        currentRunID: 0,
       })
     })
     .catch(err =>{
@@ -159,9 +161,11 @@ class App extends React.Component {
       runInfo: this.state.runInfo,
       handleRunSelection: this.handleRunSelection,
       oneRunInfo: this.state.oneRunInfo,
-      handleBaseState: this.handleBaseState,
       currentRunID: this.state.currentRunID,
       handleGetOnePlace: this.handleGetOnePlace,
+      onePlaceInfo: this.state.onePlaceInfo,
+      currentPlaceID: this.state.currentPlaceID,
+      handleBaseState: this.handleBaseState,
     }
     return (
       mountainView === 0 && this.state.forecastData.length > 0 ?

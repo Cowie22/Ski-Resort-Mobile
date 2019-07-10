@@ -28,7 +28,7 @@ class MountPluto extends React.Component {
     }).start();
   }
   render() {
-    const { mountainView, handleIcons, handleBaseState, handleGetOnePlace } = this.props;
+    const { mountainView, handleIcons, handleBaseState, handleGetOnePlace, onePlaceInfo, currentPlaceID } = this.props;
     mountainView > 0 ? this.handleAnimation() : null;
     return (
       <ImageBackground source={snowFall} style={{width: '100%', height: '100%'}}>
@@ -68,6 +68,8 @@ class MountPluto extends React.Component {
         <Display
           oneRunInfo={this.props.oneRunInfo}
           currentRunID={this.props.currentRunID}
+          onePlaceInfo={onePlaceInfo}
+          currentPlaceID={currentPlaceID}
         />
         <Button
           icon={

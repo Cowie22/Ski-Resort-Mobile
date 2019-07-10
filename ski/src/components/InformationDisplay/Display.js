@@ -20,6 +20,8 @@ class Display extends React.Component {
   render() {
     const { name, groomed, wait_time, vertical_feet, terrain, status, is_favorite, to_complete, id } = this.props.oneRunInfo;
 
+    const { onePlaceInfo } = this.props;
+
     const terrainIcon = terrain === 'Black Diamond: Most Difficult' ?
     <Icon name="cards-diamond" size={28} color="#000000" /> :
     terrain === 'Blue Square: More Difficult' ?
@@ -37,9 +39,9 @@ class Display extends React.Component {
 
     const mountainIcon = <Icon2 name="mountain" size={20} color="#000000" />
 
-    this.props.currentRunID > 0 ? this.handleAnimation() : null;
+    this.props.currentRunID > 0 || this.props.currentPlaceID ? this.handleAnimation() : null;
     return (
-      this.props.currentRunID > 0 ?
+      this.props.currentRunID > 0 && this.props.currentPlaceID === 0 ?
       <Animated.View style={[this.state.displayStart.getLayout(), styles.animated, styles.container]}>
         <Text style={[styles.title]}>{name}</Text>
         <Text
@@ -55,6 +57,13 @@ class Display extends React.Component {
         [styles.text, styles.moreDangerous]}>{statusIcon}{'  '}{status === 1 ? 'OPEN' : 'CLOSED'}</Text>
         <Text style={[styles.text]}>{clockIcon} WAIT TIME: {wait_time}</Text>
         <Text style={[styles.text]}>{mountainIcon}{'  '}{vertical_feet} Vertical Feet!</Text>
+      </Animated.View>
+      : this.props.currentRunID === 0 && this.props.currentPlaceID > 0 ?
+      <Animated.View style={[this.state.displayStart.getLayout(), styles.animated, styles.container]}>
+        <Text style={[styles.title]}>{onePlaceInfo.name}</Text>
+        <Text style={[styles.title]}>{onePlaceInfo.description}</Text>
+        <Text style={[styles.title]}>{onePlaceInfo.open_time}</Text>
+        <Text style={[styles.title]}>{onePlaceInfo.close_time}</Text>
       </Animated.View>
       :
       <View>
