@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, TextInput, View, Keyboard, KeyboardAvoidingView, Animated } from 'react-native';
+import styles from './FilterRunsStyles';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Dropdown } from 'react-native-material-dropdown';
@@ -47,24 +48,5 @@ class FilterRuns extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'black',
-  },
-  field: {
-    height: 24,
-    width: '90%',
-    fontSize: 18,
-    borderColor: 'gray',
-    backgroundColor: 'rgba(172, 173, 181,0.4)',
-    borderRadius: 10,
-    borderWidth: 1,
-    color: 'white',
-    textAlign: 'center',
-  },
-});
 
 export default FilterRuns

@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Image, Animated, StatusBar, ImageBackground } from 'react-native';
+import styles from './MountPlutoStyles';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BacksideImg from '../../../images/Backside.jpg';
@@ -93,33 +94,5 @@ class MountPluto extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'black',
-  },
-  nstar: {
-    width: '90%',
-    height: 120,
-    marginTop: 28,
-    marginLeft: 20,
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  img: {
-    width: '100%',
-    height: 334,
-    margin: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  btn: {
-    backgroundColor: 'black',
-    marginTop: 10,
-  }
-});
 
 export default MountPluto

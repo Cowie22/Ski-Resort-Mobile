@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import styles from './RunSearchStyles';
 import { Dropdown } from 'react-native-material-dropdown';
 
 const getLiftRuns = (runInfoProps, liftID) => {
@@ -72,24 +73,5 @@ class RunSearch extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'black',
-  },
-  dropdown: {
-    marginTop: -40,
-  },
-  dropList: {
-    backgroundColor: 'black',
-  },
-  text: {
-    fontSize: 30,
-    alignSelf: 'center',
-    color: 'blue'
- }
-});
 
 export default RunSearch

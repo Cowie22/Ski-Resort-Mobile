@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, Picker, View } from 'react-native';
+import styles from './SearchStyles';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Dropdown } from 'react-native-material-dropdown';
@@ -44,25 +45,5 @@ class Search extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'black',
-  },
-  dropdown: {
-    marginTop: -40,
-  },
-  dropList: {
-    backgroundColor: 'black',
-  },
-  text: {
-    fontSize: 30,
-    alignSelf: 'center',
-    color: 'blue'
- }
-});
 
 export default Search
