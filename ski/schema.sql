@@ -106,12 +106,12 @@ INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vert
 
 -- Big Springs Gondola Express
 
-INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("Village Run", "Green Circle: Easiest Way Down", 1, 0, 0, 1, 620, '20 Minutes', 200, 200, 100, 100, 6);
-INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("Condo Run", "Green Circle: Easiest Way Down", 1, 0, 0, 1, 620, '20 Minutes', 200, 200, 100, 100, 6);
+INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("Village Run", "Green Circle: Easiest Way Down", 1, 0, 0, 1, 620, '20 Minutes', 184, -317, 42, -209, 6);
+INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("Condo Run", "Green Circle: Easiest Way Down", 1, 0, 0, 1, 620, '20 Minutes', 92, -241, 77, -151, 6);
 
 -- Village Express
 
-INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("The Woods", "Blue Square: More Difficult", 1, 0, 0, 1, 670, '20 Minutes', 200, 200, 100, 100, 7);
+INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("The Woods", "Blue Square: More Difficult", 1, 0, 0, 1, 670, '20 Minutes', 22, -350, 38, -173, 7);
 
 -- Tahoe Zephyr Express
 INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("Northern Lights", "Blue Square: More Difficult", 1, 0, 0, 0, 700, '20 Minutes', 200, 200, 100, 100, 8);
@@ -190,7 +190,7 @@ INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vert
 INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("Lookout Road", "Blue Square: More Difficult", 1, 0, 0, 1, 1220, '20 Minutes', 200, 200, 100, 100, 12);
 INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("Coyboy Pass", "Blue Square: More Difficult", 1, 0, 0, 1, 1220, '20 Minutes', 200, 200, 100, 100, 12);
 
--- Big East
+-- Big Easy
 
 INSERT into runs (name, terrain, status, is_favorite, to_complete, groomed, vertical_feet, wait_time, xStart, yStart, xEnd, yEnd, lift_id) VALUES ("Lower Lion's Way", "Green Circle: Easiest Way Down", 1, 0, 0, 1, 270, '20 Minutes', 200, 200, 100, 100, 13);
 
@@ -204,6 +204,7 @@ INSERT into places (name, description, open_time, close_time) VALUES ("Lookout T
 INSERT into places (name, description, open_time, close_time) VALUES ("Logers Loop Tables", "Picknick Tables", '08:00:00', '04:30:00');
 INSERT into places (name, description, open_time, close_time) VALUES ("Village", "Everything", '08:00:00', '11:00:00');
 INSERT into places (name, description, open_time, close_time) VALUES ("Lookout Road Tables", "Picknick Tables", '08:00:00', '04:30:00');
+INSERT into places (name, description, open_time, close_time) VALUES ("TŌST", "A few friends, an epic view and a bit of bubbly: Free Daily at 2P.M.  Also open for reservations", '08:00:00', '04:30:00');
 
 
 /*  Execute this file from the command line by typing:

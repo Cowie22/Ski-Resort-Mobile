@@ -38,7 +38,7 @@ class Summit extends React.Component {
           handleRunSelection={this.props.handleRunSelection}
         />
         <FilterRuns
-        
+
         />
         <Image
           style={styles.img}

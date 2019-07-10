@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../client/public')));
-const { getAllRuns, getAllLifts, getOneRun } = require('../database/index');
+const { getAllRuns, getAllLifts, getOneRun, getOnePlace } = require('../database/index');
 
 const PORT = process.env.PORT || 2228;
 
@@ -24,6 +24,13 @@ app.get('/lift', async function(req, res) {
 app.get('/run/:id', async function(req, res) {
   const { id } = req.params;
   const data = await getOneRun(id);
+  res.send(data[0]);
+});
+
+// gets one place data depending on user click
+app.get('/place/:id', async function(req, res) {
+  const { id } = req.params;
+  const data = await getOnePlace(id);
   res.send(data[0]);
 });
 

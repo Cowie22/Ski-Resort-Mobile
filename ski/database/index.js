@@ -24,6 +24,13 @@ async function getOneRun(id) {
   return result;
 }
 
+// Gets one place from database depending on user click
+async function getOnePlace(id) {
+  const queryStr = `SELECT * FROM places WHERE id = ${id}`
+  const result = await pool.query(queryStr);
+  return result;
+}
+
 module.exports = {
-  getAllRuns, getAllLifts, getOneRun
+  getAllRuns, getAllLifts, getOneRun, getOnePlace
 }

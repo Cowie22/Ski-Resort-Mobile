@@ -18,8 +18,10 @@ class App extends React.Component {
       liftInfo: [],
       oneRunInfo: [],
       forecastData: [],
-      mountainView: 0,
+      onePlaceInfo: [],
       currentRunID: 0,
+      currentPlaceID: 0,
+      mountainView: 0,
       fadeAnim: new Animated.Value(0),
       temperature: 0,
       weatherCondition: null,
@@ -32,6 +34,7 @@ class App extends React.Component {
     this.handleIcons = this.handleIcons.bind(this);
     this.handleRunSelection = this.handleRunSelection.bind(this);
     this.handleBaseState = this.handleBaseState.bind(this);
+    this.handleGetOnePlace = this.handleGetOnePlace.bind(this);
   }
   componentWillMount() {
     this.handleGetForecastData();
@@ -55,6 +58,9 @@ class App extends React.Component {
           runInfo: res.data,
         });
       })
+      .catch(err =>{
+        console.log('ERROR', err)
+      })
   }
   // Gets lift data from the database, called in componentDidMount
   getLifts() {
@@ -63,6 +69,9 @@ class App extends React.Component {
         this.setState({
           liftInfo: res.data,
         });
+      })
+      .catch(err =>{
+        console.log('ERROR', err)
       })
     }
     // Gets one run info depending on user click.  Used for Display.js
@@ -73,6 +82,22 @@ class App extends React.Component {
         oneRunInfo: res.data[0],
         currentRunID: id,
       })
+    })
+    .catch(err =>{
+      console.log('ERROR', err)
+    })
+  }
+  handleGetOnePlace(id) {
+    axios.get(`http://localhost:2228/place/${id}`)
+    .then(res => {
+      console.log(res.data[0])
+      this.setState({
+        onePlaceInfo: res.data[0],
+        currentPlaceID: id,
+      })
+    })
+    .catch(err =>{
+      console.log('ERROR', err)
     })
   }
   handleGetWeatherData() {
@@ -96,6 +121,9 @@ class App extends React.Component {
     axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=39.2746&lon=-120.1211&APPID=cecb63c29bf8faa4dc6c39fe1c560182&units=imperial`)
     .then(res => {
       let forecastArray = [];
+      // This conditional ensures that the weather forecast always gets data from the same time of day
+      // The data is given in three hour chunks over 5 days, so the index corresponding to time of day
+      // is always changing
         for (let i = 0; i < 40; i++) {
           if (res.data.list[i].dt_txt.includes('18:00:00')) {
             forecastArray.push(res.data.list[i])
@@ -104,6 +132,9 @@ class App extends React.Component {
         this.setState({
           forecastData: forecastArray,
         })
+      })
+      .catch(err =>{
+        console.log('ERROR', err)
       })
   }
   // Handles the icons clicked, so that the proper Map View is displayed
@@ -130,6 +161,7 @@ class App extends React.Component {
       oneRunInfo: this.state.oneRunInfo,
       handleBaseState: this.handleBaseState,
       currentRunID: this.state.currentRunID,
+      handleGetOnePlace: this.handleGetOnePlace,
     }
     return (
       mountainView === 0 && this.state.forecastData.length > 0 ?
@@ -146,6 +178,7 @@ class App extends React.Component {
             liftInfo={this.state.liftInfo}
           />
           <FilterRuns
+
           />
           <ImageBackground
             style={styles.img}

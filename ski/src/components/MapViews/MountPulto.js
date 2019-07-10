@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, ScrollView, Animated, StatusBar, ImageBackground } from 'react-native';
+import {StyleSheet, Image, Animated, StatusBar, ImageBackground } from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import BacksideImg from '../../../images/Backside.jpg';
@@ -12,6 +12,7 @@ import FilterRuns from '../SearchBar/FilterRuns';
 import Display from '../InformationDisplay/Display';
 import SkierDude from '../Icons/SkierDude';
 import snowFall from '../../../images/gifs/SnowFall.gif';
+import FoodIcons from '../Icons/FoodIcons';
 
 class MountPluto extends React.Component {
   constructor(props) {
@@ -27,8 +28,7 @@ class MountPluto extends React.Component {
     }).start();
   }
   render() {
-    const { mountainView, handleIcons, handleBaseState } = this.props;
-    // mountainView === 2 || mountainView === 3 ? this.handleAnimation() : null;
+    const { mountainView, handleIcons, handleBaseState, handleGetOnePlace } = this.props;
     mountainView > 0 ? this.handleAnimation() : null;
     return (
       <ImageBackground source={snowFall} style={{width: '100%', height: '100%'}}>
@@ -46,7 +46,7 @@ class MountPluto extends React.Component {
           handleRunSelection={this.props.handleRunSelection}
         />
         <FilterRuns
-        
+
         />
         <Image
           style={styles.img}
@@ -60,6 +60,10 @@ class MountPluto extends React.Component {
         <SkierDude
           currentRunID={this.props.currentRunID}
           oneRunInfo={this.props.oneRunInfo}
+        />
+        <FoodIcons
+          mountainView={mountainView}
+          handleGetOnePlace={handleGetOnePlace}
         />
         <Display
           oneRunInfo={this.props.oneRunInfo}
