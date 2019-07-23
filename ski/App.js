@@ -154,25 +154,41 @@ class App extends React.Component {
       }, this.state.fadeAnim.setValue(0)).start();
   }
   render() {
-    const { mountainView } = this.state;
+    const { runInfo,
+      liftInfo,
+      oneRunInfo,
+      forecastData,
+      onePlaceInfo,
+      currentRunID,
+      currentPlaceID,
+      mountainView,
+      fadeAnim,
+      temperature,
+      weatherCondition,
+      humidity,
+      maxTemp,
+      minTemp,
+      windSpeed,
+      loading } = this.state;
+
     mountainView === 0 ? this.handleAnimation() : null;
     // All of the props shared amongst the conditional renders below
     const mountainViewProps = {
       handleIcons: this.handleIcons,
-      mountainView: this.state.mountainView,
-      runInfo: this.state.runInfo,
+      mountainView: mountainView,
+      runInfo: runInfo,
       handleRunSelection: this.handleRunSelection,
-      oneRunInfo: this.state.oneRunInfo,
-      currentRunID: this.state.currentRunID,
+      oneRunInfo: oneRunInfo,
+      currentRunID: currentRunID,
       handleGetOnePlace: this.handleGetOnePlace,
-      onePlaceInfo: this.state.onePlaceInfo,
-      currentPlaceID: this.state.currentPlaceID,
+      onePlaceInfo: onePlaceInfo,
+      currentPlaceID: currentPlaceID,
       handleBaseState: this.handleBaseState,
     }
     return (
-      mountainView === 0 && this.state.forecastData.length > 0 ?
+      mountainView === 0 && forecastData.length > 0 ?
       <ImageBackground source={snowFall} style={[styles.container]}>
-        <Animated.ScrollView style={{color: '#fff', opacity: this.state.fadeAnim}}>
+        <Animated.ScrollView style={{color: '#fff', opacity: fadeAnim}}>
           <StatusBar barStyle="light-content" />
           <Image
             style={styles.nstar}
@@ -180,8 +196,8 @@ class App extends React.Component {
           />
           <Search
             handleIcons={this.handleIcons}
-            mountainView={this.state.mountainView}
-            liftInfo={this.state.liftInfo}
+            mountainView={mountainView}
+            liftInfo={liftInfo}
           />
           <FilterRuns
 
@@ -194,24 +210,23 @@ class App extends React.Component {
             handleIcons={this.handleIcons}
           />
           </ImageBackground>
-          {this.state.loading === false ?
+          {loading === false ?
           <Weather
-            weatherCondition={this.state.weatherCondition}
-            temperature={this.state.temperature}
-            loading={this.state.loading}
-            humidity={this.state.humidity}
-            maxTemp={this.state.maxTemp}
-            minTemp={this.state.minTemp}
-            windSpeed={this.state.windSpeed}
-            forecastData={this.state.forecastData}
-            forecastView={this.state.forecastView}
+            weatherCondition={weatherCondition}
+            temperature={temperature}
+            loading={loading}
+            humidity={humidity}
+            maxTemp={maxTemp}
+            minTemp={minTemp}
+            windSpeed={windSpeed}
+            forecastData={forecastData}
           />
           : null
           }
           {/* <Tabs /> */}
         </Animated.ScrollView>
         </ImageBackground>
-        : mountainView > 0 && this.state.forecastData.length > 0 ?
+        : mountainView > 0 && forecastData.length > 0 ?
         <MountPluto
           {...mountainViewProps}
         />
