@@ -5,6 +5,9 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon2 from 'react-native-vector-icons/FontAwesome5';
 import Icon3 from 'react-native-vector-icons/Ionicons'
 
+// Mainly used this component for separation of concerns.  Displays picnic tables, food icons on the different maps
+// Need to refactor to stateless
+
 class FoodIcons extends React.Component {
   constructor(props) {
     super(props);

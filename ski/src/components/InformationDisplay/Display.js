@@ -13,6 +13,7 @@ class Display extends React.Component {
     }
     this.handleAnimation = this.handleAnimation.bind(this);
   }
+  // Handles the up and down movement for the run information display
   handleAnimation() {
     Animated.timing(this.state.displayStart, {
       toValue: {x: 0, y: 0},
@@ -22,8 +23,9 @@ class Display extends React.Component {
   render() {
     const { name, groomed, wait_time, vertical_feet, terrain, status } = this.props.oneRunInfo;
 
-    const { onePlaceInfo } = this.props;
+    const { onePlaceInfo, currentRunID, currentPlaceID } = this.props;
 
+    // All possible icons and colors to use depending on the run
     const terrainIcon = terrain === 'Black Diamond: Most Difficult' ?
     <Icon name="cards-diamond" size={28} color="#000000" /> :
     terrain === 'Blue Square: More Difficult' ?
@@ -48,9 +50,11 @@ class Display extends React.Component {
 
     const restroomIcon = <Icon2 name="restroom" size={28} color="#fff" />
 
-    this.props.currentRunID > 0 || this.props.currentPlaceID ? this.handleAnimation() : null;
+    // Conditional to control the animation when a run is actually selected, works at the same time for place information
+    currentRunID > 0 || currentPlaceID ? this.handleAnimation() : null;
     return (
-      this.props.currentRunID > 0 && this.props.currentPlaceID === 0 ?
+      // Controls if the state is a run or place display.  When one is called, it sets the other's ID to zero
+      currentRunID > 0 && currentPlaceID === 0 ?
       <Animated.View style={[this.state.displayStart.getLayout(), styles.animated, styles.container]}>
         <Text style={[styles.title]}>{name}</Text>
         <Text
@@ -68,7 +72,7 @@ class Display extends React.Component {
         <Text style={[styles.text]}>{mountainIcon}{'  '}{vertical_feet} Vertical Feet!</Text>
       </Animated.View>
 
-      : this.props.currentRunID === 0 && this.props.currentPlaceID > 0 ?
+      : currentRunID === 0 && currentPlaceID > 0 ?
 
       <Animated.View style={[this.state.displayStart.getLayout(), styles.animated, styles.container]}>
         <Text style={[styles.title]}>{onePlaceInfo.name}</Text>

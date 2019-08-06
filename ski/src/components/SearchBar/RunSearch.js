@@ -3,6 +3,8 @@ import { StyleSheet } from 'react-native';
 import styles from './RunSearchStyles';
 import { Dropdown } from 'react-native-material-dropdown';
 
+// Pulled this function out to make the code much more dry as you will see it is used about 13 times
+// Ensures that only the runs for the particular chairlift are grabbed from the database are shown to the user
 const getLiftRuns = (runInfoProps, liftID) => {
   let info = [];
   runInfoProps.map((run, i) => {
@@ -41,6 +43,7 @@ class RunSearch extends React.Component {
     mountainView === 13 ? (data = getLiftRuns(runInfo, 13), liftName = 'The Big Easy') :
     null
     return (
+      // Again large dropdown, mostly because so many specific styles have to be targeted
       <Dropdown
         label={`${liftName} Runs`}
         data={data}
@@ -58,6 +61,7 @@ class RunSearch extends React.Component {
         itemTextStyle={{fontFamily: 'Verdana', fontWeight: 'bold', marginLeft: 20}}
         containerStyle={styles.dropdown}
         pickerStyle={styles.dropList}
+        // Function specific for react native dropdowns
         onChangeText={(value, index, data) => {
           let currentRunID = 0;
           data.filter((run, i) => {

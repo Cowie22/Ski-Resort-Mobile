@@ -21,6 +21,8 @@ class Search extends React.Component {
       data.push(liftObj)
     })
     return (
+      // Dropdown in react native ahs a lot of specific styling that needs to be targeted directly
+      // In order to make the UI look good for the user, hence the large dropdown
       <Dropdown
         label='CHAIR LIFTS'
         data={data}
@@ -37,6 +39,9 @@ class Search extends React.Component {
         rippleOpacity={0.52}
         containerStyle={styles.dropdown}
         pickerStyle={styles.dropList}
+        // Ensures that the proper lift is displayed on icon click, because each lift has specific runs
+        // Pertinent runs are grabbed from the database and we need to make sure that only the ones for
+        // The current lift are displayed
         onChangeText={(value, index, data) => {
           this.props.handleIcons(index + 1)
         }}

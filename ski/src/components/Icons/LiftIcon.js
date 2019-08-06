@@ -3,6 +3,9 @@ import { StyleSheet, Text, View, ScrollView, Image, ImageBackground } from 'reac
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+
+// Another component for icons for separation of concerns.  Need to refactor to stateless function, originally had state
+// Holding off because state might be included
 class LiftIcon extends React.Component {
   constructor(props) {
     super(props);

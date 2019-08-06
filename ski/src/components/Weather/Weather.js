@@ -29,6 +29,8 @@ class Weather extends React.Component {
       forecastView: false,
     })
   }
+  // Left to right animations depending on whether the current day's weather is being displayed
+  // Or the five day forecast is being displayed
   handleWeatherSlide() {
     Animated.timing(this.state.weatherDisplayAnim, {
       toValue: {x: 0, y: 0},
@@ -52,12 +54,17 @@ class Weather extends React.Component {
       windSpeed,
       forecastData,
     } = this.props;
+    // Ensures that the data is available and the proper information is displayed using these conditionals
     const weatherIcon = <Icon name='weather-lightning-rainy' size={28} color={'#000000'} />
     loading === false && this.state.forecastView === false ? this.handleWeatherSlide() :
     this.state.forecastView === true ? this.handleForecastSlide() : null
     return (
+      // Conditional to ensure that the weather data is available before anything is rendered,
+      // The weather API can be slow and will crash the entire app without the conditional
       loading === false && this.state.forecastView === false ?
       <View>
+        {/* Dynamic background color and icons depending on the current days weather.  Simple, but adds a lot
+        of life to the component */}
         <Animated.View style={[this.state.weatherDisplayAnim.getLayout(), styles.weatherContainer, {backgroundColor: weatherType[weatherCondition].color}]}>
           <View style={styles.headerContainer}>
             <Text style={styles.title}>{weatherType[weatherCondition].title}</Text>
@@ -75,6 +82,7 @@ class Weather extends React.Component {
             </View>
           </View>
         </Animated.View>
+        {/* Buttons controlling which weather to display */}
         <View style={styles.btnContainer}>
             <Button
             buttonStyle={styles.btn}

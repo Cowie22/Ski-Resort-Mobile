@@ -12,6 +12,10 @@ class Forecast extends React.Component {
     }
   }
   render() {
+    // The API data is all over the place to be completely honest
+    // Takes quit a bit of mining in order to understand what is going on and what is available
+    // All of the set up below is filtering and manipulating the API data in a way that a user
+    // Would actually understand and enjoy
     const { forecastData } = this.props;
     const daysOfWeek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
     let calculatedDays = [];
@@ -21,12 +25,13 @@ class Forecast extends React.Component {
       calculatedDays.push(daysOfWeek[index]);
       calculatedWeather.push(day.weather[0].main);
     });
-
+    // Again using dynamic background colors and icons, both adding a lot of life to the page
     const weatherDayInformation = this.props.forecastData.map((day, i) => {
-      console.log(day)
       let cloudy = day.weather[0].main === 'Clouds';
       let dynamicWeatherInfo = cloudy === true && day.clouds.all < 51 ? 'Clear' : day.weather[0].main;
       return (
+        // Ensures that all of the data is available before being displayed
+        // Again the API is slow and this ensures that the app will not crash
         this.props.loading === false ?
         <View
           style={[styles.dayContainer, {backgroundColor: weatherType[dynamicWeatherInfo].color ?

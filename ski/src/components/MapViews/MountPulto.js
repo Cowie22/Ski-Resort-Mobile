@@ -22,6 +22,7 @@ class MountPluto extends React.Component {
       fadeAnim: new Animated.Value(0),
     }
   }
+  // Controls fade between different mountain views
   handleAnimation() {
     Animated.timing(this.state.fadeAnim, {
       toValue: 1,
@@ -30,8 +31,11 @@ class MountPluto extends React.Component {
   }
   render() {
     const { mountainView, handleIcons, handleBaseState, handleGetOnePlace, onePlaceInfo, currentPlaceID } = this.props;
+
+    // Handles the fade between different mountain views
     mountainView > 0 ? this.handleAnimation() : null;
     return (
+      // Snowfall background, should probably change to something more clean
       <ImageBackground source={snowFall} style={{width: '100%', height: '100%'}}>
       <Animated.ScrollView minimumZoomScale={1} maximumZoomScale={5}
       style={{color: '#fff', opacity: this.state.fadeAnim}}>
@@ -50,6 +54,7 @@ class MountPluto extends React.Component {
 
         />
         <Image
+        // Controls which image will display, or more specifically what part of the mountain will be zoomed in on,
           style={styles.img}
           source={ mountainView === 1 ? LookoutImg :
             mountainView === 2 || mountainView === 3 ? BacksideImg :

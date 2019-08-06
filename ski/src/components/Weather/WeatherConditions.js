@@ -1,3 +1,6 @@
+// This entire file is meant so that the weather is dynamically rendered.  The color of the day's weather background
+// And the icon change accordingly
+
 export const weatherType = {
   Rain: {
     color: 'rgba(0, 91, 234, 0.8)',

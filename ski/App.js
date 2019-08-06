@@ -77,6 +77,9 @@ class App extends React.Component {
       })
     }
     // Gets one run info depending on user click.  Used for Display.js
+    // Setting the current place state to 0, ensures that the animation on the child works
+    // Properly and more importantly the proper information is displayed
+    // The same logic is used below in handleGetOnePlace
   handleRunSelection(id) {
     axios.get(`http://localhost:2228/run/${id}`)
     .then(res => {
@@ -104,6 +107,7 @@ class App extends React.Component {
       console.log('ERROR', err)
     })
   }
+  // Easier to parse the data this way from the weather api and to have a dynamically rendered weather portion
   handleGetWeatherData() {
     axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=39.2746&lon=-120.1211&APPID=cecb63c29bf8faa4dc6c39fe1c560182&units=imperial`)
       .then(res => {
@@ -121,6 +125,7 @@ class App extends React.Component {
         console.log('ERROR', err)
       })
   }
+  // Different request for forecast and one days weather from the API
   handleGetForecastData() {
     axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=39.2746&lon=-120.1211&APPID=cecb63c29bf8faa4dc6c39fe1c560182&units=imperial`)
     .then(res => {
@@ -171,6 +176,7 @@ class App extends React.Component {
       windSpeed,
       loading } = this.state;
 
+      // Animates a fade when the app initially renders and when the home page is returned to
     mountainView === 0 ? this.handleAnimation() : null;
     // All of the props shared amongst the conditional renders below
     const mountainViewProps = {
@@ -186,6 +192,8 @@ class App extends React.Component {
       handleBaseState: this.handleBaseState,
     }
     return (
+      // Conditional needed for rendering because the weather data can take some time to get
+      // On occasion it would crash the app because the data was not available for the weather component
       mountainView === 0 && forecastData.length > 0 ?
       <ImageBackground source={snowFall} style={[styles.container]}>
         <Animated.ScrollView style={{color: '#fff', opacity: fadeAnim}}>
